@@ -2,19 +2,18 @@ const User = require("../models/user");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
-// 🔐 Token generator
+// Token generator
 const generateToken = (id) => {
   return jwt.sign({ id }, process.env.JWT_SECRET, {
     expiresIn: "7d"
   });
 };
 
-// ✅ Register Function
+// Register Function
 const register = async (req, res) => {
   try {
     const { name, email, password, phone } = req.body;
 
-    // Check existing user
     const existingUser = await User.findOne({
       $or: [{ email }, { phone }]
     });
@@ -25,14 +24,14 @@ const register = async (req, res) => {
       });
     }
 
-    // Hash password
     const hashedPassword = await bcrypt.hash(password, 10);
 
     const user = await User.create({
       name,
       email,
       phone,
-      password: hashedPassword
+      password: hashedPassword,
+      provider: "local"
     });
 
     res.status(201).json({
@@ -51,15 +50,17 @@ const register = async (req, res) => {
   }
 };
 
-// Login Function
+// Login Function 
 const login = async (req, res) => {
   try {
     const { email, password } = req.body;
 
-    const user = await User.findOne({ email });
+    const user = await User.findOne({ email }).select("+password");
 
-    if (!user) {
-      return res.status(400).json({ message: "Invalid credentials" });
+    if (!user || user.provider === "google") {
+      return res.status(400).json({
+        message: "Please login using Google"
+      });
     }
 
     const isMatch = await bcrypt.compare(password, user.password);
@@ -84,7 +85,29 @@ const login = async (req, res) => {
   }
 };
 
+const googleAuthCallback = async (req, res) => {
+  try {
+    const profile = req.user;
+
+    const token = generateToken(profile._id);
+
+    res.status(200).json({
+      message: "Google login successful",
+      token,
+      user: {
+        id: profile._id,
+        name: profile.name,
+        email: profile.email
+      }
+    });
+
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
 module.exports = {
   register,
-  login
+  login,
+  googleAuthCallback
 };

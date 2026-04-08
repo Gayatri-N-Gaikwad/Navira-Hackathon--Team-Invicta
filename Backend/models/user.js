@@ -20,8 +20,8 @@ const userSchema = new mongoose.Schema(
 
     phone: {
       type: String,
-      required: [true, "Phone number is required"],
       unique: true,
+      sparse: true,
       validate: {
         validator: function (v) {
           return /^[6-9]\d{9}$/.test(v); // Indian phone validation
@@ -32,9 +32,20 @@ const userSchema = new mongoose.Schema(
 
     password: {
       type: String,
-      required: [true, "Password is required"],
-      minlength: [6, "Password must be at least 6 characters"]
-    }
+      minlength: [6, "Password must be at least 6 characters"],
+      select: false
+    },
+
+     provider: {
+      type: String,
+      enum: ["local", "google"],
+      default: "local"
+    },
+
+    googleId: {
+      type: String,
+      sparse: true
+    },
   },
   { timestamps: true }
 );

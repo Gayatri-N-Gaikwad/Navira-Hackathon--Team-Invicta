@@ -1,9 +1,11 @@
 const express = require("express");
 const router = express.Router();
+const passport = require("passport");
 
 const {
   register,
-  login
+  login,
+  googleAuthCallback
 } = require("../controllers/auth");
 
 const validate = require("../middlewares/validate");
@@ -27,6 +29,19 @@ router.post(
   loginValidation,
   validate,
   login
+);
+
+router.get(
+  "/google",
+  passport.authenticate("google", {
+    scope: ["profile", "email"]
+  })
+);
+
+router.get(
+  "/google/callback",
+  passport.authenticate("google", { session: false }),
+  googleAuthCallback
 );
 
 module.exports = router;
