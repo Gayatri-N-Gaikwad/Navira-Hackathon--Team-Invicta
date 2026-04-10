@@ -1,81 +1,68 @@
-// const { v4: uuidv4 } = require("uuid")
-// const { generateAIResponse } = require("../services/geminiService")
+// const { v4: uuidv4 } = require("uuid");
+// const { generateAIResponse } = require("../services/geminiService");
 // const {
 //   generateScamScenario,
 //   scammerChatPrompt,
 //   explanationPrompt
-// } = require("../prompts/scam.prompts")
+// } = require("../prompts/scam.prompts");
 
-// // In-memory sessions (NO DB)
-// const sessions = {}
-
-// /* -----------------------------
-//    1. GENERATE RANDOM MESSAGE
-// ------------------------------*/
-// exports.getRandomMessage = async (req, res) => {
+// // -----------------------------
+// // 🛠️ SAFE JSON PARSER (VERY IMPORTANT)
+// // -----------------------------
+// const safeJSONParse = (text) => {
 //   try {
-//     const prompt = `
-// Generate a single message:
-
-// Return JSON:
-// {
-//   "sender": "",
-//   "message": "",
-//   "type": "scam or legit",
-//   "hint": "why"
-// }
-// `
-
-//     const result = await generateAIResponse(prompt)
-
-//     res.json(JSON.parse(result))
+//     return JSON.parse(text);
 //   } catch (err) {
-//     res.status(500).json({ error: err.message })
+//     console.error("JSON Parse Error:", text);
+//     return null;
 //   }
-// }
+// };
 
-// /* -----------------------------
-//    2. CHECK USER ANSWER (AI validation)
-// ------------------------------*/
-// exports.checkAnswer = async (req, res) => {
-//   try {
-//     const { message, userChoice } = req.body
-
-//     const prompt = `
-// User classified this message:
-
-// Message: ${message}
-// User choice: ${userChoice}
-
-// Tell if correct or not and explain briefly.
-// Return JSON:
-// {
-//   "correct": true/false,
-//   "explanation": "",
-//   "indicators": []
-// }
-// `
-
-//     const result = await generateAIResponse(prompt)
-
-//     res.json(JSON.parse(result))
-//   } catch (err) {
-//     res.status(500).json({ error: err.message })
-//   }
-// }
-
-// /* -----------------------------
-//    3. START SCAM ROLEPLAY CHAT
-// ------------------------------*/
+// // -----------------------------
+// // START CHAT
+// // -----------------------------
 // exports.startScamChat = async (req, res) => {
 //   try {
 //     const scenarioText = await generateAIResponse(generateScamScenario());
 
-//     const scenario = JSON.parse(scenarioText);
+//     if (!scenarioText) {
+//       return res.status(500).json({ error: "AI failed" });
+//     }
+
+//     const scenario = safeJSONParse(scenarioText);
+
+//     if (!scenario) {
+//       return res.status(500).json({ error: "Invalid AI JSON (scenario)" });
+//     }
+
+//     // 🆕 Generate initial user options
+//     const optionsPrompt = `
+// Scammer message:
+// "${scenario.initialMessage}"
+
+// Generate 3 user reply options:
+// - one cautious
+// - one confused
+// - one falling into trap
+
+// Return ONLY JSON:
+// {
+//   "options": [
+//     { "text": "", "type": "safe" },
+//     { "text": "", "type": "neutral" },
+//     { "text": "", "type": "risky" }
+//   ]
+// }
+// `;
+
+//     const optionsRes = await generateAIResponse(optionsPrompt);
+//     const parsedOptions = safeJSONParse(optionsRes);
 
 //     res.json({
+//       sessionId: uuidv4(),
 //       scenario,
-//       message: scenario.initialMessage
+//       message: scenario.initialMessage,
+//       options: parsedOptions?.options || []
 //     });
 
 //   } catch (err) {
@@ -83,67 +70,179 @@
 //   }
 // };
 
-// /* -----------------------------
-//    4. CHAT WITH SCAMMER AI
-// ------------------------------*/
+// // -----------------------------
+// // CHAT (SCAMMER AI)
+// // -----------------------------
 // exports.chat = async (req, res) => {
 //   try {
 //     const { scenario, history, message } = req.body;
 
+//     const prompt = scammerChatPrompt(
+//       JSON.stringify(scenario),
+//       history,
+//       message
+//     );
+
+//     const aiReply = await generateAIResponse(prompt);
+
+//     if (!aiReply) {
+//       return res.status(500).json({ error: "AI unavailable" });
+//     }
+
+//     // 🆕 Generate guided options
+//     const optionsPrompt = `
+// User is learning scam detection.
+
+// Scammer said:
+// "${aiReply}"
+
+// Generate 3 possible user responses:
+// 1 safe (reject / cautious)
+// 1 risky (falling into trap)
+// 1 neutral (unsure / questioning)
+
+// Return ONLY JSON:
+// {
+//   "options": [
+//     { "text": "", "type": "safe" },
+//     { "text": "", "type": "risky" },
+//     { "text": "", "type": "neutral" }
+//   ]
+// }
+// `;
+
+//     const optionsRes = await generateAIResponse(optionsPrompt);
+//     const parsedOptions = safeJSONParse(optionsRes);
+
+//     res.json({
+//       reply: aiReply,
+//       options: parsedOptions?.options || []
+//     });
+
+//   } catch (err) {
+//     res.status(500).json({ error: err.message });
+//   }
+// };
+
+// // -----------------------------
+// // RANDOM MESSAGE (QUIZ MODE)
+// // -----------------------------
+// exports.getRandomMessage = async (req, res) => {
+//   try {
 //     const prompt = `
-//     You are a scammer in a training simulation.
+// Generate a realistic SMS/WhatsApp message in India.
 
-//     SCENARIO:
-//     ${JSON.stringify(scenario)}
+// Return ONLY JSON:
+// {
+//   "sender": "",
+//   "message": "",
+//   "type": "scam or legit",
+//   "hint": "",
+//   "options": ["Scam", "Legit", "Not Sure"]
+// }
+// `;
 
-//     CHAT HISTORY:
-//     ${history}
+//     const result = await generateAIResponse(prompt);
+//     const parsed = safeJSONParse(result);
 
-//     USER MESSAGE:
-//     ${message}
+//     if (!parsed) {
+//       return res.status(500).json({ error: "Invalid AI JSON (quiz)" });
+//     }
 
-//     RULES:
-//     - Stay in scammer role
-//     - Be convincing
-//     - Use urgency, fear, reward tactics
-//     - Keep reply short
+//     res.json(parsed);
 
-//     Respond only as scammer.
-//     `;
+//   } catch (err) {
+//     res.status(500).json({ error: err.message });
+//   }
+// };
 
-//         const aiReply = await generateAIResponse(prompt);
+// // -----------------------------
+// // CHECK ANSWER
+// // -----------------------------
+// exports.checkAnswer = async (req, res) => {
+//   try {
+//     const { message, userChoice } = req.body;
 
-//         res.json({ reply: aiReply });
+//     const prompt = `
+// Message: "${message}"
+// User answer: "${userChoice}"
 
-//       } catch (err) {
-//         res.status(500).json({ error: err.message });
-//       }
-//     };
+// Evaluate if user is correct.
 
-// /* -----------------------------
-//    5. ANALYZE MESSAGE (AI SECURITY ENGINE)
-// ------------------------------*/
+// Return ONLY JSON:
+// {
+//   "correct": true/false,
+//   "explanation": "",
+//   "indicators": [],
+//   "betterResponse": ""
+// }
+// `;
+
+//     const result = await generateAIResponse(prompt);
+//     const parsed = safeJSONParse(result);
+
+//     if (!parsed) {
+//       return res.status(500).json({ error: "Invalid AI JSON (answer)" });
+//     }
+
+//     res.json(parsed);
+
+//   } catch (err) {
+//     res.status(500).json({ error: err.message });
+//   }
+// };
+
+// // -----------------------------
+// // ANALYZE MESSAGE
+// // -----------------------------
 // exports.analyzeMessage = async (req, res) => {
 //   try {
-//     const { message } = req.body
+//     const { message } = req.body;
 
 //     const result = await generateAIResponse(
 //       explanationPrompt(message)
-//     )
+//     );
 
-//     res.json(JSON.parse(result))
+//     const parsed = safeJSONParse(result);
+
+//     if (!parsed) {
+//       return res.status(500).json({ error: "Invalid AI JSON (analysis)" });
+//     }
+
+//     res.json(parsed);
+
 //   } catch (err) {
-//     res.status(500).json({ error: err.message })
+//     res.status(500).json({ error: err.message });
 //   }
-// }
+// };
+
+
+
+
+
+// ================================================================================================================================
+// GROQ service
+
 
 const { v4: uuidv4 } = require("uuid");
-const { generateAIResponse } = require("../services/geminiService");
+const { generateAIResponse } = require("../services/groqService"); // ✅ CHANGED HERE
 const {
   generateScamScenario,
   scammerChatPrompt,
   explanationPrompt
 } = require("../prompts/scam.prompts");
+
+// -----------------------------
+// 🛠️ SAFE JSON PARSER
+// -----------------------------
+const safeJSONParse = (text) => {
+  try {
+    return JSON.parse(text);
+  } catch (err) {
+    console.error("❌ JSON Parse Error:", text);
+    return null;
+  }
+};
 
 // -----------------------------
 // START CHAT
@@ -156,11 +255,42 @@ exports.startScamChat = async (req, res) => {
       return res.status(500).json({ error: "AI failed" });
     }
 
-    const scenario = JSON.parse(scenarioText);
+    const scenario = safeJSONParse(scenarioText);
+
+    if (!scenario || !scenario.initialMessage) {
+      return res.status(500).json({ error: "Invalid AI JSON (scenario)" });
+    }
+
+    // 🔹 Generate initial options (LLAMA-OPTIMIZED PROMPT)
+    const optionsPrompt = `
+You are helping a user learn scam detection.
+
+Scammer message:
+"${scenario.initialMessage}"
+
+Generate EXACTLY 3 user replies:
+1 safe (reject / cautious)
+1 neutral (asking / unsure)
+1 risky (falling into trap)
+
+Return ONLY valid JSON:
+{
+  "options": [
+    { "text": "", "type": "safe" },
+    { "text": "", "type": "neutral" },
+    { "text": "", "type": "risky" }
+  ]
+}
+`;
+
+    const optionsRes = await generateAIResponse(optionsPrompt);
+    const parsedOptions = safeJSONParse(optionsRes);
 
     res.json({
+      sessionId: uuidv4(),
       scenario,
-      message: scenario.initialMessage
+      message: scenario.initialMessage,
+      options: parsedOptions?.options || []
     });
 
   } catch (err) {
@@ -175,6 +305,10 @@ exports.chat = async (req, res) => {
   try {
     const { scenario, history, message } = req.body;
 
+    if (!scenario || !message) {
+      return res.status(400).json({ error: "Missing required fields" });
+    }
+
     const prompt = scammerChatPrompt(
       JSON.stringify(scenario),
       history,
@@ -187,8 +321,34 @@ exports.chat = async (req, res) => {
       return res.status(500).json({ error: "AI unavailable" });
     }
 
+    // 🔹 Generate next options
+    const optionsPrompt = `
+You are helping a user learn scam detection.
+
+Scammer said:
+"${aiReply}"
+
+Generate EXACTLY 3 user replies:
+1 safe (reject clearly)
+1 risky (trusting / giving info)
+1 neutral (confused / asking)
+
+Return ONLY valid JSON:
+{
+  "options": [
+    { "text": "", "type": "safe" },
+    { "text": "", "type": "risky" },
+    { "text": "", "type": "neutral" }
+  ]
+}
+`;
+
+    const optionsRes = await generateAIResponse(optionsPrompt);
+    const parsedOptions = safeJSONParse(optionsRes);
+
     res.json({
-      reply: aiReply
+      reply: aiReply,
+      options: parsedOptions?.options || []
     });
 
   } catch (err) {
@@ -202,18 +362,27 @@ exports.chat = async (req, res) => {
 exports.getRandomMessage = async (req, res) => {
   try {
     const prompt = `
-Return JSON:
+Generate a realistic Indian SMS or WhatsApp message.
+
+Return ONLY valid JSON:
 {
   "sender": "",
   "message": "",
   "type": "scam or legit",
-  "hint": ""
+  "hint": "",
+  "options": ["Scam", "Legit", "Not Sure"]
 }
 `;
 
     const result = await generateAIResponse(prompt);
+    const parsed = safeJSONParse(result);
 
-    res.json(JSON.parse(result));
+    if (!parsed) {
+      return res.status(500).json({ error: "Invalid AI JSON (quiz)" });
+    }
+
+    res.json(parsed);
+
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
@@ -226,21 +395,34 @@ exports.checkAnswer = async (req, res) => {
   try {
     const { message, userChoice } = req.body;
 
-    const prompt = `
-Message: ${message}
-User says: ${userChoice}
+    if (!message || !userChoice) {
+      return res.status(400).json({ error: "Missing fields" });
+    }
 
-Return JSON:
+    const prompt = `
+Message: "${message}"
+User answer: "${userChoice}"
+
+Evaluate correctness.
+
+Return ONLY valid JSON:
 {
   "correct": true/false,
   "explanation": "",
-  "indicators": []
+  "indicators": [],
+  "betterResponse": ""
 }
 `;
 
     const result = await generateAIResponse(prompt);
+    const parsed = safeJSONParse(result);
 
-    res.json(JSON.parse(result));
+    if (!parsed) {
+      return res.status(500).json({ error: "Invalid AI JSON (answer)" });
+    }
+
+    res.json(parsed);
+
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
@@ -253,11 +435,22 @@ exports.analyzeMessage = async (req, res) => {
   try {
     const { message } = req.body;
 
+    if (!message) {
+      return res.status(400).json({ error: "Message is required" });
+    }
+
     const result = await generateAIResponse(
       explanationPrompt(message)
     );
 
-    res.json(JSON.parse(result));
+    const parsed = safeJSONParse(result);
+
+    if (!parsed) {
+      return res.status(500).json({ error: "Invalid AI JSON (analysis)" });
+    }
+
+    res.json(parsed);
+
   } catch (err) {
     res.status(500).json({ error: err.message });
   }

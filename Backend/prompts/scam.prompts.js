@@ -1,30 +1,5 @@
 function generateScamScenario() {
   return `
-You are an expert cybersecurity simulation designer.
-
-Generate a realistic Indian scam training scenario.
-
-RULES:
-- MUST be JSON only
-- Simple English or regional tone
-- Real-world Indian digital behavior (UPI, OTP, bank, WhatsApp)
-- No explanations outside JSON
-
-Return format:
-{
-  "title": "",
-  "goal": "",
-  "initialMessage": "",
-  "scamType": "otp|kyc|bank|job|refund",
-  "tactics": ["urgency", "fear", "reward", "authority"]
-}
-
-Make it feel like a real scammer initiating conversation.
-`;
-}
-
-function generateScamScenario() {
-  return `
 You are generating a scam training scenario.
 
 Return ONLY JSON:
@@ -32,7 +7,7 @@ Return ONLY JSON:
 {
   "title": "string",
   "goal": "string",
-  "type": "otp | kyc | bank | job | refund | government",
+  "type": "otp | kyc | bank | job | refund | government | electricity | courier | Pension stop | Lottery |Scholarship	| Hospital emergency | Job offer | other",
   "initialMessage": "first scammer message to start chat"
 }
 
@@ -82,8 +57,30 @@ Return ONLY JSON:
 `;
 }
 
+function generateUserOptionsPrompt(scammerMessage) {
+  return `
+Scammer message:
+"${scammerMessage}"
+
+Generate 3 user reply options:
+- one safe
+- one risky
+- one unsure
+
+Return JSON:
+{
+  "options": [
+    { "text": "", "type": "safe" },
+    { "text": "", "type": "risky" },
+    { "text": "", "type": "unsure" }
+  ]
+}
+`;
+}
+
 module.exports = {
   generateScamScenario,
   scammerChatPrompt,
-  explanationPrompt
+  explanationPrompt,
+  generateUserOptionsPrompt
 };
