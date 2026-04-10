@@ -8,7 +8,7 @@ import VoicePlayer from '../VoicePlayer/VoicePlayer';
 import Tooltip from '../Tooltip';
 import './Navbar.css';
 
-const Navbar = ({ toggleSidebar }) => {
+const Navbar = ({ toggleSidebar, isSidebarCollapsed }) => {
   const { user, isAuthenticated, logout, isElderly } = useAuth();
   const { t } = useLanguage();
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -25,7 +25,7 @@ const Navbar = ({ toggleSidebar }) => {
       <div className="navbar-left">
         <Tooltip content="tooltipMenu" position="bottom">
           <button 
-            className="menu-btn" 
+            className={`menu-btn ${isSidebarCollapsed ? 'active' : ''}`}
             onClick={toggleSidebar}
             aria-label="Toggle menu"
           >

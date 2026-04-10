@@ -15,8 +15,19 @@
 .main-content {
   flex: 1;
   margin-left: 260px;
-  transition: margin-left 0.3s ease;
+  transition: margin-left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   min-height: calc(100vh - 70px);
+}
+
+/* Sidebar collapsed state - content expands */
+.main-content.sidebar-collapsed {
+  margin-left: 0;
+}
+
+/* Smooth content expansion */
+.main-content.sidebar-collapsed .content-wrapper {
+  max-width: 1600px;
+  padding: 2rem 3rem;
 }
 
 .content-wrapper {
@@ -30,9 +41,33 @@
   display: none;
 }
 
+/* Sidebar transition */
+.sidebar {
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Collapsed sidebar */
+.sidebar.collapsed {
+  transform: translateX(-100%);
+}
+
+/* Mobile sidebar */
+.sidebar.mobile {
+  transform: translateX(-100%);
+}
+
+.sidebar.mobile.open {
+  transform: translateX(0);
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
   .main-content {
+    margin-left: 0;
+  }
+  
+  /* On mobile, sidebar is hidden by default */
+  .main-content.sidebar-collapsed {
     margin-left: 0;
   }
 
@@ -49,6 +84,14 @@
     bottom: 0;
     background: rgba(0, 0, 0, 0.5);
     z-index: 100;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+  }
+  
+  .sidebar-overlay.active {
+    opacity: 1;
+    visibility: visible;
   }
 
   .content-wrapper {
@@ -69,6 +112,11 @@
 
 .elderly-mode .content-wrapper {
   padding: 2.5rem;
+}
+
+/* Elderly mode with collapsed sidebar */
+.elderly-mode .main-content.sidebar-collapsed .content-wrapper {
+  padding: 2.5rem 4rem;
 }
 
 @media (max-width: 768px) {

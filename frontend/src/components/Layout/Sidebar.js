@@ -6,7 +6,7 @@ import { useLanguage } from '../../context/LanguageContext';
 import Tooltip from '../Tooltip';
 import './Sidebar.css';
 
-const Sidebar = ({ isOpen, closeSidebar }) => {
+const Sidebar = ({ isCollapsed, isMobileOpen, closeSidebar }) => {
   const { isElderly, isAuthenticated } = useAuth();
   const { t } = useLanguage();
   const location = useLocation();
@@ -36,8 +36,11 @@ const Sidebar = ({ isOpen, closeSidebar }) => {
     }
   };
 
+  // Determine sidebar visibility based on screen size
+  const isOpen = window.innerWidth <= 768 ? isMobileOpen : !isCollapsed;
+  
   return (
-    <aside className={`sidebar ${isOpen ? 'open' : ''} ${isElderly ? 'elderly-sidebar' : ''}`}>
+    <aside className={`sidebar ${isOpen ? 'open' : 'collapsed'} ${isMobileOpen ? 'mobile-open' : ''} ${isElderly ? 'elderly-sidebar' : ''}`}>
       <div className="sidebar-header">
         <h3>Menu</h3>
         <Tooltip content="tooltipClose" position="bottom">

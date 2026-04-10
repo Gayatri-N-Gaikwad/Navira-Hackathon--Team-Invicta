@@ -6,30 +6,41 @@ import { useAuth } from '../../context/AuthContext';
 import './Layout.css';
 
 const Layout = () => {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
+  const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
   const { isElderly } = useAuth();
 
   const toggleSidebar = () => {
-    setIsSidebarOpen(!isSidebarOpen);
+    // On mobile, use mobile sidebar behavior
+    if (window.innerWidth <= 768) {
+      setIsMobileSidebarOpen(!isMobileSidebarOpen);
+    } else {
+      // On desktop, toggle collapse
+      setIsSidebarCollapsed(!isSidebarCollapsed);
+    }
   };
 
   const closeSidebar = () => {
-    setIsSidebarOpen(false);
+    setIsMobileSidebarOpen(false);
   };
 
   return (
     <div className={`layout ${isElderly ? 'elderly-layout elderly-mode' : ''}`}>
-      <Navbar toggleSidebar={toggleSidebar} />
+      <Navbar toggleSidebar={toggleSidebar} isSidebarCollapsed={isSidebarCollapsed} />
       <div className="layout-container">
-        <Sidebar isOpen={isSidebarOpen} closeSidebar={closeSidebar} />
-        <main className={`main-content ${isSidebarOpen ? 'sidebar-open' : ''}`}>
+        <Sidebar 
+          isCollapsed={isSidebarCollapsed} 
+          isMobileOpen={isMobileSidebarOpen}
+          closeSidebar={closeSidebar} 
+        />
+        <main className={`main-content ${isSidebarCollapsed ? 'sidebar-collapsed' : ''}`}>
           <div className="content-wrapper">
             <Outlet />
           </div>
         </main>
       </div>
-      {isSidebarOpen && (
-        <div className="sidebar-overlay" onClick={closeSidebar}></div>
+      {isMobileSidebarOpen && (
+        <div className="sidebar-overlay active" onClick={closeSidebar}></div>
       )}
     </div>
   );
