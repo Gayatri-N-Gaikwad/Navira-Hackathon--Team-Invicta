@@ -270,6 +270,30 @@
   box-shadow: 0 4px 12px rgba(57, 73, 171, 0.3);
 }
 
+/* Mobile Recharge - Green theme */
+.training-card.mobileRecharge {
+  border-color: #E8F5E9;
+}
+
+.training-card.mobileRecharge:hover {
+  border-color: #16a34a;
+}
+
+.card-icon.mobileRecharge {
+  background: linear-gradient(135deg, #E8F5E9 0%, #C8E6C9 100%);
+  color: #16a34a;
+}
+
+.training-btn.mobileRecharge {
+  background: #16a34a;
+}
+
+.training-btn.mobileRecharge:hover {
+  background: #059669;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(22, 163, 74, 0.3);
+}
+
 /* Card Badge */
 .card-badge {
   display: flex;

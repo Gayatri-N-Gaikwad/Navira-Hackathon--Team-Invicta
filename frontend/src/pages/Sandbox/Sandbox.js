@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Building2, Contact, Play, Shield, AlertCircle, CheckCircle, Video, Brain, FileText, Award, Lock } from 'lucide-react';
+import { Building2, Contact, Play, Shield, AlertCircle, CheckCircle, Video, Brain, FileText, Award, Lock, Smartphone } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 import { useLanguage } from '../../context/LanguageContext';
 import Tooltip from '../../components/Tooltip';
@@ -23,6 +23,8 @@ const Sandbox = () => {
       navigate('/sandbox/government-scheme');
     } else if (moduleId === 'digilocker') {
       navigate('/sandbox/digilocker');
+    } else if (moduleId === 'mobileRecharge') {
+      navigate('/sandbox/mobile-recharge');
     }
   };
 
@@ -96,6 +98,21 @@ const Sandbox = () => {
         'Recognize and report phishing emails'
       ],
       color: 'digilocker',
+      buttonText: t('startTraining')
+    },
+    {
+      id: 'mobileRecharge',
+      icon: Smartphone,
+      title: t('mobileRechargeTraining') || 'Mobile Recharge Safety',
+      description: 'Learn safe mobile recharge practices, detect fake payment apps, identify scam recharge plans, and avoid OTP sharing fraud. Practice realistic scenarios in a safe environment.',
+      scenarios: [
+        'Identify fake recharge apps',
+        'Enter mobile numbers correctly',
+        'Choose legitimate recharge plans',
+        'Handle OTP verification safely',
+        'Detect recharge payment scams'
+      ],
+      color: 'mobileRecharge',
       buttonText: t('startTraining')
     }
   ];

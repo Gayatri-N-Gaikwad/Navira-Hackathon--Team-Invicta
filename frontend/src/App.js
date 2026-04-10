@@ -20,6 +20,7 @@ import Badges from './pages/Badges/Badges';
 import DeepfakeTraining from './pages/DeepfakeTraining/DeepfakeTraining';
 import GovernmentSchemeTraining from './pages/GovernmentSchemeTraining/GovernmentSchemeTraining';
 import DigiLockerTraining from './pages/DigiLockerTraining/DigiLockerTraining';
+import MobileRechargeTraining from './pages/MobileRechargeTraining/MobileRechargeTraining';
 
 import Signup from './pages/Auth/Signup';
 import Login from './pages/Auth/Login';
@@ -66,6 +67,7 @@ function AppRoutes() {
           <Route path="sandbox/deepfake" element={<DeepfakeTraining />} />
           <Route path="sandbox/government-scheme" element={<GovernmentSchemeTraining />} />
           <Route path="sandbox/digilocker" element={<DigiLockerTraining />} />
+          <Route path="sandbox/mobile-recharge" element={<MobileRechargeTraining />} />
           <Route path="about" element={<About />} />
 
           {/* 🔒 Protected Pages */}
