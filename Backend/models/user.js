@@ -46,6 +46,17 @@ const userSchema = new mongoose.Schema(
       type: String,
       sparse: true
     },
+    age: Number,
+
+  location: {
+    type: String,
+    default: "India"
+  },
+
+  totalMessagesChecked: { type: Number, default: 0 },
+  scamDetectedCount: { type: Number, default: 0 },
+  safeMessageCount: { type: Number, default: 0 },
+  riskScoreAvg: { type: Number, default: 0 }
   },
   { timestamps: true }
 );

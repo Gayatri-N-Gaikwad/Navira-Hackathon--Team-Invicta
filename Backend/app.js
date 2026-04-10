@@ -11,9 +11,19 @@ app.use(passport.initialize());
 
 // Routes
 const authRoutes = require("./routes/auth.routes");
-app.use("/api/auth", authRoutes);
+const quizRoutes = require("./routes/quiz.routes");
+const trainingRoutes = require("./routes/train.routes");
+const analyzeRoute = require("./routes/analyzeRoute");
+const helpRoute = require("./routes/helpRoute");
+const dashboardRoute = require("./routes/dashboardRoute");
 
-// Test route (optional)
+app.use("/api/quiz", quizRoutes);
+app.use("/api/auth", authRoutes);
+app.use("/api/training", trainingRoutes);
+app.use("/api/analyze", analyzeRoute);
+app.use("/api/help", helpRoute);
+app.use("/api/dashboard", dashboardRoute);
+
 app.get("/", (req, res) => {
   res.send("API running 🚀");
 });
