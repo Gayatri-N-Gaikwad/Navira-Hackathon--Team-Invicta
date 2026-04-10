@@ -1,39 +1,58 @@
 const axios = require("axios");
 const { buildQuizPrompt } = require("../prompts/quiz.prompts.js");
 
-const generateQuizFromAI = async ({ module, difficulty, type, language }) => {
+const sleep = (ms) => new Promise(res => setTimeout(res, ms));
 
+const generateQuizFromAI = async (
+  { module, difficulty, type, language },
+  retries = 2
+) => {
   const prompt = buildQuizPrompt(module, difficulty, type, language);
 
   try {
     const response = await axios.post(
-      `https://generativelanguage.googleapis.com/v1/models/gemini-2.5-flash:generateContent?key=${process.env.GEMINI_API_KEY}`,
+      "https://api.groq.com/openai/v1/chat/completions",
       {
-        contents: [
+        model: "llama-3.3-70b-versatile",
+        messages: [
           {
-            parts: [
-              {
-                text: prompt
-              }
-            ]
+            role: "user",
+            content: prompt
           }
-        ]
+        ],
+        temperature: 0.7
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${process.env.GROQ_API_KEY}`,
+          "Content-Type": "application/json"
+        }
       }
     );
 
-    const text =
-      response.data.candidates[0].content.parts[0].text;
+    let text = response.data?.choices?.[0]?.message?.content;
 
-    // clean markdown if any
+    if (!text) throw new Error("Empty Groq response");
+
+    // 🧹 Clean markdown (same as Gemini)
     const cleanText = text
       .replace(/```json/g, "")
       .replace(/```/g, "")
       .trim();
 
+    // ✅ Convert to JSON
     return JSON.parse(cleanText);
 
   } catch (error) {
-    console.error("Gemini Error:", error.response?.data || error.message);
+    if (retries > 0) {
+      await sleep(1200);
+      return generateQuizFromAI(
+        { module, difficulty, type, language },
+        retries - 1
+      );
+    }
+
+    console.error("Groq Error:", error.response?.data || error.message);
     throw new Error("Failed to generate quiz");
   }
 };
