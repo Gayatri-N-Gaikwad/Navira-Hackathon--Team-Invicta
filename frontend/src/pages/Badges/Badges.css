@@ -1,0 +1,472 @@
+/* Badges Page Styles */
+
+.badges-page {
+  padding: 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Header */
+.badges-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: linear-gradient(135deg, #f57c00 0%, #e65100 100%);
+  border-radius: 20px;
+  padding: 1.5rem 2rem;
+  margin-bottom: 1.5rem;
+  color: white;
+}
+
+.back-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  padding: 0.625rem 1rem;
+  border-radius: 10px;
+  color: white;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: background 0.2s;
+}
+
+.back-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.badges-header h1 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.badges-summary {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 0.625rem 1rem;
+  border-radius: 24px;
+  font-weight: 600;
+}
+
+/* Overview */
+.badges-overview {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.overview-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: var(--surface);
+  padding: 1.25rem;
+  border-radius: 16px;
+  box-shadow: 0 2px 12px var(--shadow);
+}
+
+.overview-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.overview-icon.unlocked {
+  background: #e8f5e9;
+  color: #4caf50;
+}
+
+.overview-icon.remaining {
+  background: #f5f5f5;
+  color: #9e9e9e;
+}
+
+.overview-icon.total {
+  background: #fff3e0;
+  color: #ff9800;
+}
+
+.overview-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.overview-value {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.overview-label {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+}
+
+/* Section Title */
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+}
+
+.section-title svg {
+  color: #ff9800;
+}
+
+/* Badges Grid */
+.badges-section {
+  margin-bottom: 1.5rem;
+}
+
+.badges-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1rem;
+}
+
+/* Badge Card */
+.badge-card {
+  position: relative;
+  background: var(--surface);
+  border-radius: 20px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 16px var(--shadow);
+  overflow: hidden;
+  transition: all 0.3s;
+  border: 2px solid transparent;
+}
+
+.badge-card.locked {
+  opacity: 0.7;
+  filter: grayscale(0.4);
+}
+
+.badge-card.unlocked {
+  border-color: var(--badge-color, #4caf50);
+  animation: badgeGlow 3s ease infinite;
+}
+
+@keyframes badgeGlow {
+  0%, 100% {
+    box-shadow: 0 4px 16px var(--shadow);
+  }
+  50% {
+    box-shadow: 0 4px 24px var(--badge-color, #4caf50);
+  }
+}
+
+.badge-card.special {
+  background: linear-gradient(135deg, #fff8e1 0%, #fff3e0 100%);
+}
+
+.badge-glow {
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  right: -50%;
+  bottom: -50%;
+  background: radial-gradient(circle, var(--badge-color, #4caf50) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.3s;
+  pointer-events: none;
+}
+
+.badge-card.unlocked .badge-glow {
+  opacity: 0.08;
+}
+
+.badge-icon-wrapper {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.lock-icon {
+  position: absolute;
+  bottom: -4px;
+  right: -4px;
+  color: #9e9e9e;
+  background: white;
+  border-radius: 50%;
+  padding: 2px;
+}
+
+.badge-content {
+  position: relative;
+  z-index: 1;
+}
+
+.badge-name {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+}
+
+.badge-description {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  margin-bottom: 1rem;
+  line-height: 1.5;
+}
+
+.badge-requirement {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  font-size: 0.85rem;
+}
+
+.requirement-label {
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.requirement-value {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.badge-unlocked-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  background: linear-gradient(135deg, #4caf50 0%, #2e7d32 100%);
+  color: white;
+  padding: 0.375rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-top: 0.75rem;
+}
+
+/* Shine Effect */
+.badge-shine {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  animation: shine 3s ease infinite;
+  pointer-events: none;
+}
+
+@keyframes shine {
+  0% {
+    left: -100%;
+  }
+  50%, 100% {
+    left: 200%;
+  }
+}
+
+/* Encouragement Card */
+.encouragement-card {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+  border-radius: 20px;
+  padding: 1.5rem 2rem;
+  border: 2px solid #2196f3;
+}
+
+.encouragement-icon {
+  width: 64px;
+  height: 64px;
+  background: #2196f3;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  flex-shrink: 0;
+}
+
+.encouragement-content {
+  flex: 1;
+}
+
+.encouragement-content h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #1565c0;
+  margin-bottom: 0.5rem;
+}
+
+.encouragement-content p {
+  font-size: 1rem;
+  color: #1976d2;
+  margin: 0;
+}
+
+.encouragement-btn {
+  padding: 1rem 1.5rem;
+  background: #2196f3;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  flex-shrink: 0;
+}
+
+.encouragement-btn:hover {
+  background: #1565c0;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(33, 150, 243, 0.3);
+}
+
+/* Elderly Mode */
+.elderly-mode .badges-header {
+  padding: 2rem 2.5rem;
+}
+
+.elderly-mode .badges-header h1 {
+  font-size: 2.25rem;
+}
+
+.elderly-mode .overview-card {
+  padding: 1.75rem;
+}
+
+.elderly-mode .overview-icon {
+  width: 72px;
+  height: 72px;
+}
+
+.elderly-mode .overview-icon svg {
+  width: 40px;
+  height: 40px;
+}
+
+.elderly-mode .overview-value {
+  font-size: 2.25rem;
+}
+
+.elderly-mode .overview-label {
+  font-size: 1.1rem;
+}
+
+.elderly-mode .section-title {
+  font-size: 1.5rem;
+}
+
+.elderly-mode .badge-card {
+  padding: 2rem;
+}
+
+.elderly-mode .badge-icon-wrapper {
+  width: 100px;
+  height: 100px;
+}
+
+.elderly-mode .badge-icon-wrapper svg {
+  width: 48px;
+  height: 48px;
+}
+
+.elderly-mode .badge-name {
+  font-size: 1.5rem;
+}
+
+.elderly-mode .badge-description {
+  font-size: 1.1rem;
+}
+
+.elderly-mode .badge-requirement {
+  font-size: 1rem;
+}
+
+.elderly-mode .encouragement-card {
+  padding: 2rem 2.5rem;
+}
+
+.elderly-mode .encouragement-icon {
+  width: 80px;
+  height: 80px;
+}
+
+.elderly-mode .encouragement-icon svg {
+  width: 48px;
+  height: 48px;
+}
+
+.elderly-mode .encouragement-content h3 {
+  font-size: 1.5rem;
+}
+
+.elderly-mode .encouragement-content p {
+  font-size: 1.2rem;
+}
+
+.elderly-mode .encouragement-btn {
+  padding: 1.25rem 2rem;
+  font-size: 1.2rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .badges-header {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+  }
+
+  .badges-overview {
+    grid-template-columns: 1fr;
+  }
+
+  .badges-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .encouragement-card {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .encouragement-btn {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .badges-page {
+    padding: 1rem;
+  }
+
+  .badge-card {
+    padding: 1.25rem;
+  }
+
+  .badge-icon-wrapper {
+    width: 64px;
+    height: 64px;
+  }
+
+  .badge-name {
+    font-size: 1.1rem;
+  }
+}

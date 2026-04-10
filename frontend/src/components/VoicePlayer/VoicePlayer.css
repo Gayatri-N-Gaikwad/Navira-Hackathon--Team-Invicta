@@ -1,0 +1,234 @@
+/* Voice Player Styles */
+
+.voice-player {
+  display: flex;
+  align-items: center;
+}
+
+.voice-player.no-support {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Voice Toggle Button */
+.voice-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.5rem 0.875rem;
+  background: rgba(255, 255, 255, 0.15);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 24px;
+  color: white;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.voice-toggle:hover {
+  background: rgba(255, 255, 255, 0.25);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.voice-toggle.playing {
+  background: rgba(255, 255, 255, 0.3);
+  border-color: rgba(255, 255, 255, 0.6);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 8px rgba(255, 255, 255, 0);
+  }
+}
+
+/* Voice Bar (Floating Bottom) */
+.voice-bar {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+  border-radius: 50px;
+  padding: 0.75rem 1.5rem;
+  box-shadow: 0 8px 32px rgba(46, 125, 50, 0.3);
+  z-index: 999;
+  animation: slideUp 0.3s ease;
+  min-width: 300px;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+.voice-bar-content {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.voice-icon-pulse {
+  color: white;
+  animation: iconPulse 1.5s ease infinite;
+}
+
+@keyframes iconPulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.8;
+  }
+}
+
+/* Waveform Animation */
+.waveform {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  height: 24px;
+}
+
+.waveform span {
+  width: 4px;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 2px;
+  animation: wave 1s ease infinite;
+}
+
+.waveform span:nth-child(1) { animation-delay: 0s; height: 8px; }
+.waveform span:nth-child(2) { animation-delay: 0.1s; height: 16px; }
+.waveform span:nth-child(3) { animation-delay: 0.2s; height: 24px; }
+.waveform span:nth-child(4) { animation-delay: 0.3s; height: 16px; }
+.waveform span:nth-child(5) { animation-delay: 0.4s; height: 8px; }
+
+@keyframes wave {
+  0%, 100% {
+    transform: scaleY(1);
+    opacity: 0.6;
+  }
+  50% {
+    transform: scaleY(1.2);
+    opacity: 1;
+  }
+}
+
+.voice-status {
+  color: white;
+  font-size: 0.95rem;
+  font-weight: 500;
+  flex: 1;
+  white-space: nowrap;
+}
+
+.voice-controls {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.voice-control-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  border-radius: 50%;
+  color: white;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.voice-control-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: scale(1.1);
+}
+
+.voice-control-btn.close:hover {
+  background: rgba(244, 67, 54, 0.3);
+}
+
+/* Elderly Mode */
+.elderly-navbar .voice-toggle {
+  padding: 0.75rem 1.25rem;
+  font-size: 1.1rem;
+}
+
+.elderly-navbar .voice-toggle svg {
+  width: 24px;
+  height: 24px;
+}
+
+.elderly-navbar .voice-bar {
+  padding: 1rem 2rem;
+  min-width: 380px;
+  bottom: 30px;
+}
+
+.elderly-navbar .voice-status {
+  font-size: 1.2rem;
+}
+
+.elderly-navbar .voice-control-btn {
+  width: 48px;
+  height: 48px;
+}
+
+.elderly-navbar .voice-control-btn svg {
+  width: 24px;
+  height: 24px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .voice-bar {
+    left: 1rem;
+    right: 1rem;
+    transform: none;
+    min-width: auto;
+    padding: 0.75rem 1rem;
+  }
+
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .voice-status {
+    font-size: 0.85rem;
+  }
+
+  .waveform {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .voice-toggle {
+    padding: 0.5rem;
+  }
+
+  .voice-toggle span {
+    display: none;
+  }
+}

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Voice Test - GuardianSathi</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; max-width: 800px; margin: 0 auto; }
+    h1 { color: #2563eb; }
+    .voice-list { background: #f3f4f6; padding: 15px; border-radius: 8px; margin: 20px 0; }
+    .voice-item { padding: 8px; border-bottom: 1px solid #ddd; }
+    .voice-item:last-child { border-bottom: none; }
+    .hindi { color: #dc2626; font-weight: bold; }
+    .marathi { color: #dc2626; font-weight: bold; }
+    .english { color: #2563eb; }
+    button { padding: 10px 20px; margin: 5px; cursor: pointer; background: #2563eb; color: white; border: none; border-radius: 5px; }
+    button:hover { background: #1d4ed8; }
+    .test-section { margin: 30px 0; padding: 20px; background: #f9fafb; border-radius: 8px; }
+  </style>
+</head>
+<body>
+  <h1>🔊 Voice Guidance Test</h1>
+  
+  <div class="test-section">
+    <h2>1. Available Voices</h2>
+    <p>These are the voices installed on your system:</p>
+    <div id="voiceList" class="voice-list">
+      <p>Loading voices...</p>
+    </div>
+    <button onclick="loadVoices()">Refresh Voice List</button>
+  </div>
+
+  <div class="test-section">
+    <h2>2. Test Speech</h2>
+    <p>Click to test voice in different languages:</p>
+    <button onclick="speak('Hello, this is English voice test', 'en-US')">🇺🇸 Test English</button>
+    <button onclick="speak('नमस्ते, यह हिंदी आवाज परीक्षण है', 'hi-IN')">🇮🇳 Test Hindi</button>
+    <button onclick="speak('नमस्कार, हे मराठी आवाज चाचणी आहे', 'mr-IN')">🇮🇳 Test Marathi</button>
+    <button onclick="stop()">⏹️ Stop</button>
+  </div>
+
+  <div class="test-section">
+    <h2>3. Windows Setup Instructions</h2>
+    <p><strong>If Hindi/Marathi voices don't appear:</strong></p>
+    <ol>
+      <li>Open Windows Settings (Win + I)</li>
+      <li>Click "Time & Language" → "Language & region"</li>
+      <li>Click "Add a language"</li>
+      <li>Search for "Hindi" or "Marathi"</li>
+      <li>Select it and click "Next"</li>
+      <li>Check "Install language pack" and "Text-to-speech"</li>
+      <li>Click "Install"</li>
+      <li><strong>Restart your browser</strong> after installation</li>
+    </ol>
+    
+    <p style="color: #dc2626; margin-top: 20px;"><strong>Note:</strong> Windows does NOT include Marathi text-to-speech voice by default. Our app will use Hindi voice as a fallback for Marathi text.</p>
+  </div>
+  
+  <div class="test-section">
+    <h2>4. Alternative Solutions for Marathi</h2>
+    <p>Since Windows doesn't have built-in Marathi TTS, you can:</p>
+    <ul>
+      <li><strong>Option 1:</strong> Use the Hindi voice fallback (automatic in our app)</li>
+      <li><strong>Option 2:</strong> Install Google Chrome and use Google Translate TTS extension</li>
+      <li><strong>Option 3:</strong> Install third-party Marathi TTS software like "eSpeak" or "Festival"</li>
+      <li><strong>Option 4:</strong> Use Google Cloud Text-to-Speech API (requires setup)</li>
+    </ul>
+  </div>
+
+  <script>
+    function loadVoices() {
+      const synth = window.speechSynthesis;
+      const voices = synth.getVoices();
+      const list = document.getElementById('voiceList');
+      
+      if (voices.length === 0) {
+        list.innerHTML = '<p>No voices found. Please wait a moment and click Refresh.</p>';
+        return;
+      }
+      
+      let html = `<p><strong>Total voices: ${voices.length}</strong></p>`;
+      
+      // Check for Indian voices
+      const hindiVoices = voices.filter(v => v.lang.includes('hi'));
+      const marathiVoices = voices.filter(v => v.lang.includes('mr'));
+      
+      if (hindiVoices.length === 0) {
+        html += '<p style="color: #dc2626;">⚠️ No Hindi voices found!</p>';
+      } else {
+        html += `<p style="color: #16a34a;">✅ Found ${hindiVoices.length} Hindi voice(s)</p>`;
+      }
+      
+      if (marathiVoices.length === 0) {
+        html += '<p style="color: #dc2626;">⚠️ No Marathi voices found!</p>';
+      } else {
+        html += `<p style="color: #16a34a;">✅ Found ${marathiVoices.length} Marathi voice(s)</p>`;
+      }
+      
+      html += '<hr><h3>All Voices:</h3>';
+      
+      voices.forEach((voice, i) => {
+        let className = '';
+        if (voice.lang.includes('hi')) className = 'hindi';
+        else if (voice.lang.includes('mr')) className = 'marathi';
+        else if (voice.lang.includes('en')) className = 'english';
+        
+        html += `<div class="voice-item ${className}">
+          ${i + 1}. <strong>${voice.name}</strong> (${voice.lang})
+          ${voice.default ? ' - DEFAULT' : ''}
+        </div>`;
+      });
+      
+      list.innerHTML = html;
+    }
+    
+    function speak(text, lang) {
+      const synth = window.speechSynthesis;
+      synth.cancel();
+      
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = lang;
+      utterance.rate = 0.9;
+      
+      // Try to find matching voice
+      const voices = synth.getVoices();
+      let voice = voices.find(v => v.lang === lang) || 
+                  voices.find(v => v.lang.startsWith(lang.split('-')[0]));
+      
+      // Fallback: Use Hindi voice for Marathi if no Marathi voice found
+      if (!voice && lang === 'mr-IN') {
+        voice = voices.find(v => v.lang.startsWith('hi'));
+        if (voice) {
+          console.log('Using Hindi voice as fallback for Marathi:', voice.name);
+        }
+      }
+      
+      if (voice) {
+        utterance.voice = voice;
+        console.log('Using voice:', voice.name);
+      } else {
+        console.warn('No voice found for', lang);
+        alert('No voice found for ' + lang + '. Please install the language pack. See instructions above.');
+      }
+      
+      synth.speak(utterance);
+    }
+    
+    function stop() {
+      window.speechSynthesis.cancel();
+    }
+    
+    // Load voices when page loads
+    if ('speechSynthesis' in window) {
+      // Chrome needs this event
+      window.speechSynthesis.onvoiceschanged = loadVoices;
+      // Try loading immediately too
+      setTimeout(loadVoices, 100);
+    } else {
+      document.getElementById('voiceList').innerHTML = 
+        '<p style="color: #dc2626;">❌ Speech synthesis not supported in this browser. Please use Chrome, Edge, or Safari.</p>';
+    }
+  </script>
+</body>
+</html>

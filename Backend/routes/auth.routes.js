@@ -5,8 +5,10 @@ const passport = require("passport");
 const {
   register,
   login,
-  googleAuthCallback
+  googleAuthCallback,
+  getMe
 } = require("../controllers/auth");
+const { protect } = require("../middlewares/auth");
 
 const validate = require("../middlewares/validate");
 
@@ -18,8 +20,8 @@ const {
 // Register
 router.post(
   "/register",
-  registerValidation,
-  validate,
+  // registerValidation,
+  // validate,
   register
 );
 
@@ -43,5 +45,8 @@ router.get(
   passport.authenticate("google", { session: false }),
   googleAuthCallback
 );
+
+// Get current user (protected)
+router.get("/me", protect, getMe);
 
 module.exports = router;

@@ -1,0 +1,82 @@
+/* Layout Styles */
+
+.layout {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.layout-container {
+  display: flex;
+  flex: 1;
+  padding-top: 70px;
+}
+
+.main-content {
+  flex: 1;
+  margin-left: 260px;
+  transition: margin-left 0.3s ease;
+  min-height: calc(100vh - 70px);
+}
+
+.content-wrapper {
+  padding: 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.sidebar-overlay {
+  display: none;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .main-content {
+    margin-left: 0;
+  }
+
+  .main-content.sidebar-open {
+    overflow: hidden;
+  }
+
+  .sidebar-overlay {
+    display: block;
+    position: fixed;
+    top: 70px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 100;
+  }
+
+  .content-wrapper {
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .content-wrapper {
+    padding: 0.75rem;
+  }
+}
+
+/* Elderly User Styles - Applied when age > 55 */
+.elderly-layout .layout-container {
+  padding-top: 85px;
+}
+
+.elderly-mode .content-wrapper {
+  padding: 2.5rem;
+}
+
+@media (max-width: 768px) {
+  .elderly-layout .layout-container {
+    padding-top: 80px;
+  }
+
+  .elderly-mode .content-wrapper {
+    padding: 1.5rem;
+  }
+}

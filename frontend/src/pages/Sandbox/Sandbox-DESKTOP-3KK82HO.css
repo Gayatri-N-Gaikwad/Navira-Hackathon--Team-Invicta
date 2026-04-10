@@ -1,0 +1,455 @@
+/* Sandbox Page Styles */
+
+.sandbox-page {
+  padding-bottom: 2rem;
+}
+
+/* Page Header */
+.page-header {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding: 1.5rem 2rem;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+  border-radius: 16px;
+  color: white;
+}
+
+.header-icon {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.header-content h1 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.header-content p {
+  font-size: 1rem;
+  opacity: 0.9;
+  max-width: 600px;
+}
+
+/* Training Grid */
+.training-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+/* Training Cards */
+.training-card {
+  background: var(--surface);
+  border-radius: 20px;
+  padding: 2rem;
+  box-shadow: 0 4px 20px var(--shadow);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transition: transform 0.3s, box-shadow 0.3s;
+  border: 2px solid transparent;
+}
+
+.training-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 32px var(--shadow);
+}
+
+.training-card.banking {
+  border-color: #E8F5E9;
+}
+
+.training-card.banking:hover {
+  border-color: var(--primary);
+}
+
+.training-card.government {
+  border-color: #E8F5E9;
+}
+
+.training-card.government:hover {
+  border-color: var(--primary);
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.card-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-icon.banking {
+  background: linear-gradient(135deg, #E8F5E9 0%, #C8E6C9 100%);
+  color: var(--primary);
+}
+
+.card-icon.government {
+  background: linear-gradient(135deg, #E8F5E9 0%, #C8E6C9 100%);
+  color: var(--primary);
+}
+
+.card-header h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.card-description {
+  color: var(--text-secondary);
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+/* Scenarios Section */
+.scenarios-section {
+  background: var(--background);
+  border-radius: 12px;
+  padding: 1.25rem;
+  margin-bottom: 1.5rem;
+  flex: 1;
+}
+
+.scenarios-section h3 {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.scenarios-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.scenarios-list li {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+}
+
+.check-icon {
+  color: var(--primary);
+  flex-shrink: 0;
+}
+
+/* Card Actions */
+.card-actions {
+  margin-bottom: 1rem;
+}
+
+.training-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  width: 100%;
+  padding: 1rem 1.5rem;
+  border: none;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  color: white;
+}
+
+.training-btn.banking {
+  background: var(--primary);
+}
+
+.training-btn.banking:hover {
+  background: var(--primary-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(46, 125, 50, 0.3);
+}
+
+.training-btn.government {
+  background: var(--primary);
+}
+
+.training-btn.government:hover {
+  background: var(--primary-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(46, 125, 50, 0.3);
+}
+
+/* Card Badge */
+.card-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  background: #F5F7FA;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+
+.card-badge svg {
+  color: var(--primary);
+}
+
+/* Sandbox Info */
+.sandbox-info {
+  margin-bottom: 2rem;
+}
+
+.info-card {
+  background: var(--surface);
+  border-radius: 20px;
+  padding: 2rem;
+  box-shadow: 0 4px 20px var(--shadow);
+}
+
+.info-card h3 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.info-steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+}
+
+.info-step {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.step-number {
+  width: 40px;
+  height: 40px;
+  background: var(--primary);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1.125rem;
+  flex-shrink: 0;
+}
+
+.step-content h4 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+}
+
+.step-content p {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+/* Safety Tips */
+.safety-tips {
+  background: linear-gradient(135deg, #FFF8E1 0%, #FFF3E0 100%);
+  border-radius: 20px;
+  padding: 2rem;
+  border: 2px solid var(--accent);
+}
+
+.safety-tips h3 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.tips-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.25rem;
+}
+
+.tip-card {
+  background: var(--surface);
+  border-radius: 12px;
+  padding: 1.25rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.tip-icon {
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+
+.tip-card p {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Elderly Mode */
+.elderly-mode .page-header {
+  padding: 2rem 2.5rem;
+}
+
+.elderly-mode .header-content h1 {
+  font-size: 2.25rem;
+}
+
+.elderly-mode .header-content p {
+  font-size: 1.2rem;
+}
+
+.elderly-mode .training-grid {
+  grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+  gap: 2.5rem;
+}
+
+.elderly-mode .training-card {
+  padding: 2.5rem;
+}
+
+.elderly-mode .card-header h2 {
+  font-size: 1.85rem;
+}
+
+.elderly-mode .card-description {
+  font-size: 1.2rem;
+}
+
+.elderly-mode .scenarios-section {
+  padding: 1.75rem;
+}
+
+.elderly-mode .scenarios-section h3 {
+  font-size: 1.15rem;
+}
+
+.elderly-mode .scenarios-list li {
+  font-size: 1.1rem;
+}
+
+.elderly-mode .training-btn {
+  padding: 1.25rem 2rem;
+  font-size: 1.2rem;
+}
+
+.elderly-mode .info-card h3,
+.elderly-mode .safety-tips h3 {
+  font-size: 1.85rem;
+}
+
+.elderly-mode .step-content h4 {
+  font-size: 1.3rem;
+}
+
+.elderly-mode .step-content p {
+  font-size: 1.1rem;
+}
+
+.elderly-mode .tip-card p {
+  font-size: 1.15rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .page-header {
+    flex-direction: column;
+    text-align: center;
+    padding: 1.5rem;
+  }
+
+  .header-content h1 {
+    font-size: 1.5rem;
+  }
+
+  .training-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .training-card {
+    padding: 1.5rem;
+  }
+
+  .info-steps {
+    grid-template-columns: 1fr;
+  }
+
+  .tips-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Elderly Mobile */
+  .elderly-mode .page-header {
+    padding: 2rem 1.75rem;
+  }
+
+  .elderly-mode .header-content h1 {
+    font-size: 1.85rem;
+  }
+
+  .elderly-mode .training-grid {
+    gap: 2rem;
+  }
+
+  .elderly-mode .training-card {
+    padding: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .page-header {
+    padding: 1.25rem;
+  }
+
+  .card-header h2 {
+    font-size: 1.25rem;
+  }
+
+  .card-icon {
+    width: 50px;
+    height: 50px;
+  }
+
+  .training-btn {
+    font-size: 0.9rem;
+  }
+
+  .safety-tips {
+    padding: 1.5rem;
+  }
+}

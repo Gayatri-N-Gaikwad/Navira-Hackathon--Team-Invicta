@@ -10,10 +10,7 @@ exports.registerValidation = [
   body("email")
     .isEmail().withMessage("Valid email required")
     .normalizeEmail(),
-
-  body("phone")
-    .matches(/^[6-9]\d{9}$/).withMessage("Invalid phone number"),
-
+    
   body("password")
     .isLength({ min: 6 }).withMessage("Password must be at least 6 characters")
 ];

@@ -12,26 +12,28 @@ const generateToken = (id) => {
 // Register Function
 const register = async (req, res) => {
   try {
-    const { name, email, password, phone } = req.body;
+    const { name, email, password, birthYear } = req.body;
 
-    const existingUser = await User.findOne({
-      $or: [{ email }, { phone }]
-    });
+    // ✅ FIXED
+    const existingUser = await User.findOne({ email });
 
     if (existingUser) {
       return res.status(400).json({
-        message: "User already exists with email or phone"
+        message: "User already exists with this email"
       });
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
+    
+    const currentYear = new Date().getFullYear();
+    const age = birthYear ? currentYear - parseInt(birthYear) : null;
 
     const user = await User.create({
       name,
       email,
-      phone,
       password: hashedPassword,
-      provider: "local"
+      provider: "local",
+      age
     });
 
     res.status(201).json({
@@ -41,7 +43,7 @@ const register = async (req, res) => {
         id: user._id,
         name: user.name,
         email: user.email,
-        phone: user.phone
+        age: user.age
       }
     });
 
@@ -76,7 +78,7 @@ const login = async (req, res) => {
         id: user._id,
         name: user.name,
         email: user.email,
-        phone: user.phone
+        age: user.age
       }
     });
 
@@ -97,7 +99,8 @@ const googleAuthCallback = async (req, res) => {
       user: {
         id: profile._id,
         name: profile.name,
-        email: profile.email
+        email: profile.email,
+        age: profile.age
       }
     });
 
@@ -106,8 +109,29 @@ const googleAuthCallback = async (req, res) => {
   }
 };
 
+// Get current user
+const getMe = async (req, res) => {
+  try {
+    const user = await User.findById(req.user.id);
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+    res.status(200).json({
+      user: {
+        id: user._id,
+        name: user.name,
+        email: user.email,
+        age: user.age
+      }
+    });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
 module.exports = {
   register,
   login,
-  googleAuthCallback
+  googleAuthCallback,
+  getMe
 };

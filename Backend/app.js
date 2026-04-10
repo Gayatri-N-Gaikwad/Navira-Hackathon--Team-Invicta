@@ -4,8 +4,13 @@ const passport = require("./config/passport");
 
 const app = express();
 
+// 🔥 CORS CONFIG (IMPORTANT for frontend connection)
+app.use(cors({
+  origin: "http://localhost:3000", // React frontend
+  credentials: true
+}));
+
 // Middleware
-app.use(cors());
 app.use(express.json());
 app.use(passport.initialize());
 
@@ -17,13 +22,15 @@ const analyzeRoute = require("./routes/analyzeRoute");
 const helpRoute = require("./routes/helpRoute");
 const dashboardRoute = require("./routes/dashboardRoute");
 
-app.use("/api/quiz", quizRoutes);
+// API Routes
 app.use("/api/auth", authRoutes);
+app.use("/api/quiz", quizRoutes);
 app.use("/api/training", trainingRoutes);
 app.use("/api/analyze", analyzeRoute);
 app.use("/api/help", helpRoute);
 app.use("/api/dashboard", dashboardRoute);
 
+// Test Route
 app.get("/", (req, res) => {
   res.send("API running 🚀");
 });

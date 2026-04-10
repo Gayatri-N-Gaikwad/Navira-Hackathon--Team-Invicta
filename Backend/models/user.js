@@ -18,17 +18,17 @@ const userSchema = new mongoose.Schema(
       validate: [validator.isEmail, "Invalid email"]
     },
 
-    phone: {
-      type: String,
-      unique: true,
-      sparse: true,
-      validate: {
-        validator: function (v) {
-          return /^[6-9]\d{9}$/.test(v); // Indian phone validation
-        },
-        message: "Invalid phone number"
-      }
-    },
+    // phone: {
+    //   type: String,
+    //   unique: true,
+    //   sparse: true,
+    //   validate: {
+    //     validator: function (v) {
+    //       return /^[6-9]\d{9}$/.test(v); // Indian phone validation
+    //     },
+    //     message: "Invalid phone number"
+    //   }
+    // },
 
     password: {
       type: String,
@@ -46,6 +46,7 @@ const userSchema = new mongoose.Schema(
       type: String,
       sparse: true
     },
+    
     age: Number,
 
   location: {

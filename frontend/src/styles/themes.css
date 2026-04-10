@@ -1,0 +1,372 @@
+/* ========================================
+   DUAL THEME SYSTEM - AGE-BASED ACCESSIBILITY
+   ======================================== */
+
+/* ----------------------------------------
+   THEME 1: REGULAR USERS (< 55 years)
+   Modern, vibrant, visually engaging
+   ---------------------------------------- */
+:root {
+  /* Primary Colors - Bright & Vibrant */
+  --primary: #2E7D32;
+  --primary-dark: #1B5E20;
+  --primary-light: #4CAF50;
+  
+  /* Action Colors */
+  --action-blue: #1976D2;
+  --action-blue-hover: #1565C0;
+  --success-green: #388E3C;
+  --error-red: #D32F2F;
+  --warning-yellow: #FBC02D;
+  --info-cyan: #0288D1;
+  
+  /* Background & Surface */
+  --background: #f5f7fa;
+  --surface: #ffffff;
+  --surface-hover: #f0f4f8;
+  --card-bg: #ffffff;
+  
+  /* Text Colors */
+  --text-primary: #212529;
+  --text-secondary: #6c757d;
+  --text-muted: #adb5bd;
+  
+  /* Borders & Shadows */
+  --border: #dee2e6;
+  --shadow: rgba(0, 0, 0, 0.1);
+  --shadow-lg: rgba(0, 0, 0, 0.15);
+  
+  /* Training Module Colors */
+  --banking-color: #2196F3;
+  --government-color: #4CAF50;
+  --deepfake-color: #FF9800;
+  --scheme-color: #9C27B0;
+  --digilocker-color: #00BCD4;
+  
+  /* Status Colors */
+  --success-bg: #E8F5E9;
+  --error-bg: #FFEBEE;
+  --warning-bg: #FFF3E0;
+  --info-bg: #E3F2FD;
+  
+  /* Typography Scale - Regular */
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.5rem;
+  --font-size-3xl: 2rem;
+  
+  /* Spacing - Regular */
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  
+  /* Border Radius - Regular */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  
+  /* Button Sizes - Regular */
+  --btn-padding-y: 0.625rem;
+  --btn-padding-x: 1.25rem;
+  --btn-font-size: 0.95rem;
+  
+  /* Transitions */
+  --transition-fast: 0.15s ease;
+  --transition-base: 0.2s ease;
+  --transition-slow: 0.3s ease;
+}
+
+/* ----------------------------------------
+   THEME 2: ELDERLY USERS (≥ 55 years)
+   High-contrast, low-glare, eye-friendly
+   ---------------------------------------- */
+.elderly-mode {
+  /* Primary Colors - Darker, Muted */
+  --primary: #1B5E20;
+  --primary-dark: #0D3B0E;
+  --primary-light: #2E7D32;
+  
+  /* Action Colors - Deep, High Contrast */
+  --action-blue: #0D47A1;
+  --action-blue-hover: #0A3D8F;
+  --success-green: #1B5E20;
+  --error-red: #B71C1C;
+  --warning-yellow: #E65100;
+  --info-cyan: #01579B;
+  
+  /* Background & Surface - High Contrast */
+  --background: #FFFFFF;
+  --surface: #FAFAFA;
+  --surface-hover: #F5F5F5;
+  --card-bg: #FFFFFF;
+  
+  /* Text Colors - Pure Black for Maximum Readability */
+  --text-primary: #000000;
+  --text-secondary: #424242;
+  --text-muted: #616161;
+  
+  /* Borders - Strong, Clear */
+  --border: #424242;
+  --shadow: rgba(0, 0, 0, 0.2);
+  --shadow-lg: rgba(0, 0, 0, 0.3);
+  
+  /* Training Module Colors - Darker */
+  --banking-color: #1565C0;
+  --government-color: #2E7D32;
+  --deepfake-color: #E65100;
+  --scheme-color: #6A1B9A;
+  --digilocker-color: #00838F;
+  
+  /* Status Colors - Muted but Clear */
+  --success-bg: #C8E6C9;
+  --error-bg: #FFCDD2;
+  --warning-bg: #FFE0B2;
+  --info-bg: #B3E5FC;
+  
+  /* Typography Scale - Larger (20-30% bigger) */
+  --font-size-xs: 0.875rem;
+  --font-size-sm: 1rem;
+  --font-size-base: 1.15rem;
+  --font-size-lg: 1.3rem;
+  --font-size-xl: 1.5rem;
+  --font-size-2xl: 1.8rem;
+  --font-size-3xl: 2.4rem;
+  
+  /* Spacing - Larger */
+  --spacing-xs: 0.375rem;
+  --spacing-sm: 0.75rem;
+  --spacing-md: 1.25rem;
+  --spacing-lg: 2rem;
+  --spacing-xl: 2.5rem;
+  
+  /* Border Radius - Larger (easier to see) */
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
+  
+  /* Button Sizes - Larger with Bold Text */
+  --btn-padding-y: 0.875rem;
+  --btn-padding-x: 1.75rem;
+  --btn-font-size: 1.1rem;
+}
+
+/* ----------------------------------------
+   ELDERLY MODE SPECIFIC ENHANCEMENTS
+   ---------------------------------------- */
+
+/* Bold text for better readability */
+.elderly-mode {
+  font-weight: 500;
+}
+
+.elderly-mode h1,
+.elderly-mode h2,
+.elderly-mode h3,
+.elderly-mode h4,
+.elderly-mode h5,
+.elderly-mode h6,
+.elderly-mode .heading,
+.elderly-mode .title,
+.elderly-mode .logo-text {
+  font-weight: 700 !important;
+}
+
+/* Stronger borders on interactive elements */
+.elderly-mode button,
+.elderly-mode .btn,
+.elderly-mode input,
+.elderly-mode select,
+.elderly-mode textarea,
+.elderly-mode .card,
+.elderly-mode .dropdown-item {
+  border-width: 2px;
+  border-color: var(--border);
+}
+
+/* Larger buttons */
+.elderly-mode button,
+.elderly-mode .btn {
+  min-height: 48px;
+  min-width: 48px;
+}
+
+/* Larger form inputs */
+.elderly-mode input,
+.elderly-mode select,
+.elderly-mode textarea {
+  padding: 0.875rem 1rem;
+  font-size: 1.1rem;
+}
+
+/* Enhanced focus states */
+.elderly-mode *:focus {
+  outline: 3px solid var(--action-blue);
+  outline-offset: 2px;
+}
+
+/* Larger icons */
+.elderly-mode svg,
+.elderly-mode .icon {
+  width: 1.5em;
+  height: 1.5em;
+}
+
+/* Stronger card shadows */
+.elderly-mode .card,
+.elderly-mode .training-card,
+.elderly-mode .quiz-card,
+.elderly-mode .badge-card {
+  box-shadow: 0 4px 12px var(--shadow-lg);
+  border: 2px solid var(--border);
+}
+
+/* High contrast links */
+.elderly-mode a,
+.elderly-mode .link {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+/* Enhanced tooltip contrast */
+.elderly-mode .tooltip-content {
+  background: #000000 !important;
+  color: #FFFFFF !important;
+  font-size: 1rem;
+  padding: 12px 16px;
+  border: 2px solid #FFFFFF;
+}
+
+/* Larger click targets */
+.elderly-mode .menu-btn,
+.elderly-mode .user-btn,
+.elderly-mode .close-btn {
+  padding: 0.75rem;
+}
+
+/* Enhanced notification */
+.elderly-mode .page-notification {
+  padding: 16px 28px;
+  font-size: 1.15rem;
+  border: 2px solid #FFFFFF;
+}
+
+/* Sidebar enhancements */
+.elderly-mode .sidebar-link {
+  padding: 1rem 1.25rem;
+  font-size: 1.1rem;
+}
+
+.elderly-mode .sidebar-icon {
+  width: 28px;
+  height: 28px;
+}
+
+/* Navbar enhancements */
+.elderly-mode.navbar,
+.elderly-mode .navbar {
+  height: 80px;
+}
+
+.elderly-mode .logo-text {
+  font-size: 1.4rem;
+}
+
+/* Progress indicators */
+.elderly-mode .progress-bar {
+  height: 12px;
+  border: 1px solid var(--border);
+}
+
+/* Alert/Status messages */
+.elderly-mode .alert,
+.elderly-mode .notification {
+  border-width: 2px;
+  padding: 1rem 1.25rem;
+}
+
+/* Quiz options */
+.elderly-mode .quiz-option {
+  padding: 1.25rem;
+  margin-bottom: 1rem;
+  border-width: 2px;
+}
+
+/* Training module cards */
+.elderly-mode .training-card {
+  padding: 1.5rem;
+}
+
+.elderly-mode .training-card h3 {
+  font-size: 1.4rem;
+}
+
+.elderly-mode .training-card p {
+  font-size: 1.1rem;
+}
+
+/* Badge cards */
+.elderly-mode .badge-card {
+  padding: 1.5rem;
+}
+
+.elderly-mode .badge-icon {
+  width: 64px;
+  height: 64px;
+}
+
+/* Form labels */
+.elderly-mode label {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+/* Error messages */
+.elderly-mode .error-message {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--error-red);
+}
+
+/* Success messages */
+.elderly-mode .success-message {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--success-green);
+}
+
+/* Breadcrumb */
+.elderly-mode .breadcrumb {
+  font-size: 1.05rem;
+}
+
+/* Tables */
+.elderly-mode table th,
+.elderly-mode table td {
+  padding: 1rem;
+  font-size: 1.05rem;
+}
+
+/* Modals/Dialogs */
+.elderly-mode .modal-content,
+.elderly-mode .dialog {
+  border: 2px solid var(--border);
+  box-shadow: 0 8px 24px var(--shadow-lg);
+}
+
+/* Voice player */
+.elderly-mode .voice-player {
+  padding: 0.75rem 1rem;
+}
+
+.elderly-mode .voice-player button {
+  width: 48px;
+  height: 48px;
+}
