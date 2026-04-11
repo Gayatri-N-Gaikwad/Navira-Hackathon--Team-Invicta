@@ -6,7 +6,7 @@ const app = express();
 
 // 🔥 CORS CONFIG (IMPORTANT for frontend connection)
 app.use(cors({
-  origin: "http://localhost:3000", // React frontend
+  origin: ["http://localhost:3000", "http://localhost:3001"],
   credentials: true
 }));
 

@@ -1,0 +1,206 @@
+.training-landing {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.training-container {
+  max-width: 1200px;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: start;
+}
+
+.training-main {
+  display: flex;
+  justify-content: center;
+}
+
+.main-card {
+  background: white;
+  border-radius: 20px;
+  padding: 60px 40px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  max-width: 400px;
+  width: 100%;
+}
+
+.training-features {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.training-header {
+  margin-bottom: 40px;
+}
+
+.training-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #2d3748;
+  margin-bottom: 15px;
+  line-height: 1.2;
+}
+
+.training-subtitle {
+  font-size: 1.2rem;
+  color: #718096;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.training-features {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+  margin-bottom: 40px;
+}
+
+.feature-card {
+  background: white;
+  padding: 25px 20px;
+  border-radius: 15px;
+  border: 2px solid #e2e8f0;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.feature-card:hover {
+  transform: translateY(-2px);
+  border-color: #667eea;
+  box-shadow: 0 8px 20px rgba(102, 126, 234, 0.15);
+}
+
+.feature-card .feature-icon {
+  font-size: 2rem;
+  margin-bottom: 15px;
+  display: block;
+}
+
+.feature-card h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #2d3748;
+  margin: 0 0 10px 0;
+}
+
+.feature-card p {
+  font-size: 0.95rem;
+  color: #718096;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.training-actions {
+  margin-top: 30px;
+  text-align: center;
+}
+
+.start-training-btn {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  padding: 15px 30px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-height: 50px;
+}
+
+.start-training-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+}
+
+.training-info {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.training-info p {
+  font-size: 0.9rem;
+  color: #718096;
+  margin: 0;
+  background: #f8fafc;
+  padding: 8px 15px;
+  border-radius: 20px;
+  border: 1px solid #e2e8f0;
+}
+
+/* Mobile-first responsive design */
+@media (max-width: 768px) {
+  .training-landing {
+    padding: 15px;
+  }
+  
+  .training-container {
+    grid-template-columns: 1fr;
+    gap: 30px;
+    max-width: 500px;
+  }
+  
+  .main-card {
+    padding: 40px 30px;
+  }
+  
+  .training-title {
+    font-size: 2rem;
+  }
+  
+  .training-subtitle {
+    font-size: 1.1rem;
+  }
+  
+  .feature-card {
+    padding: 20px 15px;
+  }
+  
+  .start-training-btn {
+    font-size: 1.2rem;
+    padding: 18px 30px;
+  }
+}
+
+@media (max-width: 480px) {
+  .training-landing {
+    padding: 15px;
+  }
+  
+  .training-container {
+    padding: 25px 15px;
+  }
+  
+  .main-card {
+    padding: 30px 20px;
+  }
+  
+  .training-title {
+    font-size: 1.8rem;
+  }
+  
+  .feature-card {
+    padding: 20px 15px;
+  }
+  
+  .training-info {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .training-info p {
+    width: 100%;
+    text-align: center;
+  }
+}

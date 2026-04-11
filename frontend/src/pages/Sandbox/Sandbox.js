@@ -1,11 +1,25 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Building2, Contact, Play, Shield, AlertCircle, CheckCircle, Video, Brain, FileText, Award, Lock, Smartphone } from 'lucide-react';
-import { useAuth } from '../../context/AuthContext';
-import { useLanguage } from '../../context/LanguageContext';
-import Tooltip from '../../components/Tooltip';
-import PageNotification from '../../components/PageNotification/PageNotification';
-import './Sandbox.css';
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import {
+  Building2,
+  Contact,
+  Play,
+  Shield,
+  AlertCircle,
+  CheckCircle,
+  Video,
+  Brain,
+  FileText,
+  Award,
+  Lock,
+  Smartphone,
+  Sparkles,
+} from "lucide-react";
+import { useAuth } from "../../context/AuthContext";
+import { useLanguage } from "../../context/LanguageContext";
+import Tooltip from "../../components/Tooltip";
+import PageNotification from "../../components/PageNotification/PageNotification";
+import "./Sandbox.css";
 
 const Sandbox = () => {
   const { isElderly } = useAuth();
@@ -13,115 +27,125 @@ const Sandbox = () => {
   const navigate = useNavigate();
 
   const handleStartTraining = (moduleId) => {
-    if (moduleId === 'banking') {
-      navigate('/sandbox/banking');
-    } else if (moduleId === 'government') {
-      navigate('/sandbox/government');
-    } else if (moduleId === 'deepfake') {
-      navigate('/sandbox/deepfake');
-    } else if (moduleId === 'governmentScheme') {
-      navigate('/sandbox/government-scheme');
-    } else if (moduleId === 'digilocker') {
-      navigate('/sandbox/digilocker');
-    } else if (moduleId === 'mobileRecharge') {
-      navigate('/sandbox/mobile-recharge');
+    if (moduleId === "banking") {
+      navigate("/sandbox/banking");
+    } else if (moduleId === "government") {
+      navigate("/sandbox/government");
+    } else if (moduleId === "deepfake") {
+      navigate("/sandbox/deepfake");
+    } else if (moduleId === "governmentScheme") {
+      navigate("/sandbox/government-scheme");
+    } else if (moduleId === "digilocker") {
+      navigate("/sandbox/digilocker");
+    } else if (moduleId === "mobileRecharge") {
+      navigate("/sandbox/mobile-recharge");
     }
+  };
+
+  const handleAITraining = () => {
+    navigate("/scam-ai");
   };
 
   const trainingModules = [
     {
-      id: 'banking',
+      id: "banking",
       icon: Building2,
-      title: t('bankingTraining'),
-      description: 'Learn about OTP fraud, phishing attempts, UPI scams, fake banking calls, and how to protect your financial information.',
+      title: t("bankingTraining"),
+      description:
+        "Learn about OTP fraud, phishing attempts, UPI scams, fake banking calls, and how to protect your financial information.",
       scenarios: [
-        'Fake bank calls asking for OTP',
-        'Phishing emails requesting login details',
-        'UPI payment frauds',
-        'Fake banking websites'
+        "Fake bank calls asking for OTP",
+        "Phishing emails requesting login details",
+        "UPI payment frauds",
+        "Fake banking websites",
       ],
-      color: 'banking',
-      buttonText: t('startTraining')
+      color: "banking",
+      buttonText: t("startTraining"),
     },
     {
-      id: 'government',
+      id: "government",
       icon: Contact,
-      title: t('governmentTraining'),
-      description: 'Learn about Aadhaar scams, ABHA frauds, fake government websites, KYC scams, and how to verify official communications.',
+      title: t("governmentTraining"),
+      description:
+        "Learn about Aadhaar scams, ABHA frauds, fake government websites, KYC scams, and how to verify official communications.",
       scenarios: [
-        'Fake Aadhaar update messages',
-        'ABHA health ID scams',
-        'Fake government websites',
-        'KYC update frauds'
+        "Fake Aadhaar update messages",
+        "ABHA health ID scams",
+        "Fake government websites",
+        "KYC update frauds",
       ],
-      color: 'government',
-      buttonText: t('startTraining')
+      color: "government",
+      buttonText: t("startTraining"),
     },
     {
-      id: 'deepfake',
+      id: "deepfake",
       icon: Brain,
-      title: t('deepfakeTraining') || 'Deepfake Scam Simulator',
-      description: 'Learn to identify AI-generated video scams including fake relative calls, deepfake impersonation, and urgency-based frauds targeting elderly victims.',
+      title: t("deepfakeTraining") || "Deepfake Scam Simulator",
+      description:
+        "Learn to identify AI-generated video scams including fake relative calls, deepfake impersonation, and urgency-based frauds targeting elderly victims.",
       scenarios: [
-        'Fake video calls from relatives',
-        'AI-generated voice scams',
-        'Deepfake impersonation attacks',
-        'Urgency-based fraud tactics'
+        "Fake video calls from relatives",
+        "AI-generated voice scams",
+        "Deepfake impersonation attacks",
+        "Urgency-based fraud tactics",
       ],
-      color: 'deepfake',
-      buttonText: t('startTraining')
+      color: "deepfake",
+      buttonText: t("startTraining"),
     },
     {
-      id: 'governmentScheme',
+      id: "governmentScheme",
       icon: FileText,
-      title: t('governmentSchemeTraining') || 'Government Scheme Application',
-      description: 'Learn to safely apply for government assistance schemes. Practice identifying official websites, filling forms securely, uploading masked documents, and avoiding fake payment scams.',
+      title: t("governmentSchemeTraining") || "Government Scheme Application",
+      description:
+        "Learn to safely apply for government assistance schemes. Practice identifying official websites, filling forms securely, uploading masked documents, and avoiding fake payment scams.",
       scenarios: [
-        'Identify official .gov.in websites',
-        'Fill forms without sharing sensitive data',
-        'Upload masked Aadhaar documents',
-        'Avoid fake processing fee scams'
+        "Identify official .gov.in websites",
+        "Fill forms without sharing sensitive data",
+        "Upload masked Aadhaar documents",
+        "Avoid fake processing fee scams",
       ],
-      color: 'governmentScheme',
-      buttonText: t('startTraining')
+      color: "governmentScheme",
+      buttonText: t("startTraining"),
     },
     {
-      id: 'digilocker',
+      id: "digilocker",
       icon: Lock,
-      title: t('digilockerTraining') || 'DigiLocker Security Training',
-      description: 'Learn to safely use DigiLocker for storing and sharing documents. Practice identifying official portals, handling OTPs securely, detecting WhatsApp OTP scams, and avoiding phishing emails.',
+      title: t("digilockerTraining") || "DigiLocker Security Training",
+      description:
+        "Learn to safely use DigiLocker for storing and sharing documents. Practice identifying official portals, handling OTPs securely, detecting WhatsApp OTP scams, and avoiding phishing emails.",
       scenarios: [
-        'Identify official DigiLocker.gov.in website',
-        'Enter mobile and handle OTP securely',
-        'Detect WhatsApp OTP scam attempts',
-        'Download and share documents safely',
-        'Recognize and report phishing emails'
+        "Identify official DigiLocker.gov.in website",
+        "Enter mobile and handle OTP securely",
+        "Detect WhatsApp OTP scam attempts",
+        "Download and share documents safely",
+        "Recognize and report phishing emails",
       ],
-      color: 'digilocker',
-      buttonText: t('startTraining')
+      color: "digilocker",
+      buttonText: t("startTraining"),
     },
     {
-      id: 'mobileRecharge',
+      id: "mobileRecharge",
       icon: Smartphone,
-      title: t('mobileRechargeTraining') || 'Mobile Recharge Safety',
-      description: 'Learn safe mobile recharge practices, detect fake payment apps, identify scam recharge plans, and avoid OTP sharing fraud. Practice realistic scenarios in a safe environment.',
+      title: t("mobileRechargeTraining") || "Mobile Recharge Safety",
+      description:
+        "Learn safe mobile recharge practices, detect fake payment apps, identify scam recharge plans, and avoid OTP sharing fraud. Practice realistic scenarios in a safe environment.",
       scenarios: [
-        'Identify fake recharge apps',
-        'Enter mobile numbers correctly',
-        'Choose legitimate recharge plans',
-        'Handle OTP verification safely',
-        'Detect recharge payment scams'
+        "Identify fake recharge apps",
+        "Enter mobile numbers correctly",
+        "Choose legitimate recharge plans",
+        "Handle OTP verification safely",
+        "Detect recharge payment scams",
       ],
-      color: 'mobileRecharge',
-      buttonText: t('startTraining')
-    }
+      color: "mobileRecharge",
+      buttonText: t("startTraining"),
+    },
   ];
 
   return (
-    <div className={`sandbox-page ${isElderly ? 'elderly-mode' : ''}`}>
+    <div className={`sandbox-page ${isElderly ? "elderly-mode" : ""}`}>
       {/* Page Notification */}
       <PageNotification pageKey="pageSandbox" />
-      
+
       {/* Page Header */}
       <div className="page-header">
         <div className="header-icon">
@@ -129,7 +153,52 @@ const Sandbox = () => {
         </div>
         <div className="header-content">
           <h1>Interactive Sandbox Training</h1>
-          <p>Practice real-world scenarios in a safe environment. Learn to identify scams without any risk.</p>
+          <p>
+            Practice real-world scenarios in a safe environment. Learn to
+            identify scams without any risk.
+          </p>
+        </div>
+      </div>
+
+      {/* AI Training Section */}
+      <div className="ai-training-section">
+        <div className="ai-training-card">
+          <div className="ai-card-header">
+            <div className="ai-card-icon">
+              <Sparkles size={50} />
+            </div>
+            <div className="ai-card-content">
+              <h2>AI-Powered Scam Detection Training</h2>
+              <p>
+                Learn through interactive simulations with real-time AI
+                feedback. Practice identifying scams, handling conversations,
+                and analyzing messages.
+              </p>
+            </div>
+          </div>
+
+          <div className="ai-features">
+            <div className="ai-feature">
+              <div className="feature-icon">📱</div>
+              <h4>Message Classification</h4>
+              <p>Identify scam vs legitimate messages</p>
+            </div>
+            <div className="ai-feature">
+              <div className="feature-icon">💬</div>
+              <h4>Chat Simulator</h4>
+              <p>Practice with AI scammer conversations</p>
+            </div>
+            <div className="ai-feature">
+              <div className="feature-icon">🔍</div>
+              <h4>Message Analysis</h4>
+              <p>Analyze suspicious messages instantly</p>
+            </div>
+          </div>
+
+          <button className="ai-training-btn" onClick={handleAITraining}>
+            <Sparkles size={20} />
+            Learn with AI
+          </button>
         </div>
       </div>
 
@@ -139,19 +208,30 @@ const Sandbox = () => {
         <div className="tips-grid">
           <div className="tip-card important">
             <span className="tip-icon">🔒</span>
-            <p><strong>Never share</strong> OTPs, PINs, or passwords with anyone</p>
+            <p>
+              <strong>Never share</strong> OTPs, PINs, or passwords with anyone
+            </p>
           </div>
           <div className="tip-card important">
             <span className="tip-icon">🔗</span>
-            <p><strong>Always check</strong> website URLs before entering information</p>
+            <p>
+              <strong>Always check</strong> website URLs before entering
+              information
+            </p>
           </div>
           <div className="tip-card important">
             <span className="tip-icon">⏸️</span>
-            <p><strong>Take time</strong> to verify unexpected requests - don't rush</p>
+            <p>
+              <strong>Take time</strong> to verify unexpected requests - don't
+              rush
+            </p>
           </div>
           <div className="tip-card important">
             <span className="tip-icon">📞</span>
-            <p><strong>Contact official numbers</strong> directly, don't use provided numbers</p>
+            <p>
+              <strong>Contact official numbers</strong> directly, don't use
+              provided numbers
+            </p>
           </div>
         </div>
       </div>
@@ -168,9 +248,9 @@ const Sandbox = () => {
                 </div>
                 <h2>{module.title}</h2>
               </div>
-              
+
               <p className="card-description">{module.description}</p>
-              
+
               <div className="scenarios-section">
                 <h3>
                   <AlertCircle size={18} />
@@ -185,10 +265,10 @@ const Sandbox = () => {
                   ))}
                 </ul>
               </div>
-              
+
               <div className="card-actions">
                 <Tooltip content="tooltipStartTraining" position="top">
-                  <button 
+                  <button
                     className={`training-btn ${module.color}`}
                     onClick={() => handleStartTraining(module.id)}
                   >
@@ -197,10 +277,10 @@ const Sandbox = () => {
                   </button>
                 </Tooltip>
               </div>
-              
+
               <div className="card-badge">
                 <Shield size={14} />
-                <span>{t('safeEnvironment')}</span>
+                <span>{t("safeEnvironment")}</span>
               </div>
             </div>
           );
@@ -216,28 +296,39 @@ const Sandbox = () => {
               <div className="step-number">1</div>
               <div className="step-content">
                 <h4>Select a Module</h4>
-                <p>Choose between Banking or Government ID training based on your needs.</p>
+                <p>
+                  Choose between Banking or Government ID training based on your
+                  needs.
+                </p>
               </div>
             </div>
             <div className="info-step">
               <div className="step-number">2</div>
               <div className="step-content">
                 <h4>Practice Scenarios</h4>
-                <p>Interact with realistic scam scenarios in a completely safe environment.</p>
+                <p>
+                  Interact with realistic scam scenarios in a completely safe
+                  environment.
+                </p>
               </div>
             </div>
             <div className="info-step">
               <div className="step-number">3</div>
               <div className="step-content">
                 <h4>Learn from Feedback</h4>
-                <p>Get immediate feedback on your choices and learn the correct actions.</p>
+                <p>
+                  Get immediate feedback on your choices and learn the correct
+                  actions.
+                </p>
               </div>
             </div>
             <div className="info-step">
               <div className="step-number">4</div>
               <div className="step-content">
                 <h4>Build Confidence</h4>
-                <p>Apply your knowledge to stay safe in real-world situations.</p>
+                <p>
+                  Apply your knowledge to stay safe in real-world situations.
+                </p>
               </div>
             </div>
           </div>

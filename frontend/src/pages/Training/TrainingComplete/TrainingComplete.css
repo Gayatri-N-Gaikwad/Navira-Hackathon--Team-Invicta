@@ -1,0 +1,371 @@
+.training-complete {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 20px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.completion-container {
+  max-width: 600px;
+  margin: 0 auto;
+  background: white;
+  border-radius: 20px;
+  padding: 40px 30px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.completion-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.completion-icon {
+  font-size: 4rem;
+  margin-bottom: 20px;
+}
+
+.completion-header h1 {
+  font-size: 2.5rem;
+  color: #2d3748;
+  margin-bottom: 15px;
+  font-weight: 700;
+}
+
+.completion-header p {
+  font-size: 1.2rem;
+  color: #718096;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.score-section {
+  margin-bottom: 40px;
+}
+
+.score-display {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background: #f8fafc;
+  padding: 30px;
+  border-radius: 15px;
+  border: 2px solid #e2e8f0;
+}
+
+.score-circle {
+  text-align: center;
+  position: relative;
+  width: 120px;
+  height: 120px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+}
+
+.score-percentage {
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.score-label {
+  font-size: 0.9rem;
+  opacity: 0.9;
+  margin-top: 5px;
+}
+
+.score-details {
+  text-align: center;
+}
+
+.score-details p {
+  margin: 8px 0;
+  font-size: 1.1rem;
+  color: #4a5568;
+}
+
+.score-details strong {
+  color: #2d3748;
+  font-weight: 600;
+}
+
+.risk-section {
+  margin-bottom: 40px;
+}
+
+.risk-card {
+  display: flex;
+  align-items: center;
+  padding: 25px;
+  border-radius: 15px;
+  border: 2px solid;
+  background: white;
+}
+
+.risk-card.low {
+  border-color: #22c55e;
+  background: #f0fdf4;
+}
+
+.risk-card.medium {
+  border-color: #f59e0b;
+  background: #fffbeb;
+}
+
+.risk-card.high {
+  border-color: #ef4444;
+  background: #fef2f2;
+}
+
+.risk-icon {
+  font-size: 3rem;
+  margin-right: 20px;
+}
+
+.risk-content h3 {
+  margin: 0 0 10px 0;
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+.risk-card.low .risk-content h3 {
+  color: #16a34a;
+}
+
+.risk-card.medium .risk-content h3 {
+  color: #d97706;
+}
+
+.risk-card.high .risk-content h3 {
+  color: #dc2626;
+}
+
+.risk-content p {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #4a5568;
+}
+
+.recommendations {
+  margin-bottom: 40px;
+}
+
+.recommendations h3 {
+  font-size: 1.5rem;
+  color: #2d3748;
+  margin-bottom: 20px;
+  text-align: center;
+  font-weight: 600;
+}
+
+.recommendation-cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+.recommendation-card {
+  background: #f8fafc;
+  padding: 25px;
+  border-radius: 15px;
+  border: 2px solid #e2e8f0;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.recommendation-card:hover {
+  transform: translateY(-2px);
+  border-color: #cbd5e0;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.card-icon {
+  font-size: 2.5rem;
+  margin-bottom: 15px;
+}
+
+.recommendation-card h4 {
+  font-size: 1.2rem;
+  color: #2d3748;
+  margin: 0 0 10px 0;
+  font-weight: 600;
+}
+
+.recommendation-card p {
+  font-size: 0.95rem;
+  color: #718096;
+  margin: 0 0 20px 0;
+  line-height: 1.5;
+}
+
+.card-btn {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  font-size: 1rem;
+}
+
+.card-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+}
+
+.safety-tips {
+  background: #eff6ff;
+  border: 2px solid #3b82f6;
+  padding: 25px;
+  border-radius: 15px;
+  margin-bottom: 40px;
+}
+
+.safety-tips h3 {
+  font-size: 1.3rem;
+  color: #1e40af;
+  margin: 0 0 20px 0;
+  font-weight: 600;
+}
+
+.safety-tips ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.safety-tips li {
+  padding: 10px 0;
+  font-size: 1rem;
+  color: #1e40af;
+  line-height: 1.5;
+  position: relative;
+  padding-left: 25px;
+}
+
+.safety-tips li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: #22c55e;
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.completion-actions {
+  text-align: center;
+}
+
+.home-btn {
+  background: white;
+  color: #667eea;
+  border: 2px solid #667eea;
+  padding: 15px 30px;
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+}
+
+.home-btn:hover {
+  background: #667eea;
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+  .training-complete {
+    padding: 15px;
+  }
+  
+  .completion-container {
+    padding: 30px 20px;
+  }
+  
+  .completion-header h1 {
+    font-size: 2rem;
+  }
+  
+  .completion-header p {
+    font-size: 1.1rem;
+  }
+  
+  .score-display {
+    flex-direction: column;
+    gap: 25px;
+    padding: 25px 20px;
+  }
+  
+  .score-circle {
+    width: 100px;
+    height: 100px;
+  }
+  
+  .score-percentage {
+    font-size: 1.8rem;
+  }
+  
+  .risk-card {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .risk-icon {
+    margin-right: 0;
+    margin-bottom: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .completion-container {
+    padding: 25px 15px;
+  }
+  
+  .completion-header h1 {
+    font-size: 1.8rem;
+  }
+  
+  .completion-icon {
+    font-size: 3rem;
+  }
+  
+  .score-circle {
+    width: 90px;
+    height: 90px;
+  }
+  
+  .score-percentage {
+    font-size: 1.6rem;
+  }
+  
+  .recommendation-card {
+    padding: 20px 15px;
+  }
+  
+  .card-icon {
+    font-size: 2rem;
+  }
+  
+  .safety-tips {
+    padding: 20px 15px;
+  }
+  
+  .safety-tips h3 {
+    font-size: 1.2rem;
+  }
+  
+  .safety-tips li {
+    font-size: 0.95rem;
+  }
+}
