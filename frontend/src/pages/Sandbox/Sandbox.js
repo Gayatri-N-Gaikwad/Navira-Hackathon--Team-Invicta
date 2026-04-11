@@ -204,7 +204,7 @@ const Sandbox = () => {
 
       {/* Safety Tips - Moved to TOP for visibility */}
       <div className="safety-tips">
-        <h3>⚠️ Safety Tips - Read Before You Start</h3>
+        <h3>⚠️ {t('safetyTipsReadBefore')}</h3>
         <div className="tips-grid">
           <div className="tip-card important">
             <span className="tip-icon">🔒</span>
@@ -254,7 +254,7 @@ const Sandbox = () => {
               <div className="scenarios-section">
                 <h3>
                   <AlertCircle size={18} />
-                  What You'll Learn
+                  {t('whatYoullLearn')}
                 </h3>
                 <ul className="scenarios-list">
                   {module.scenarios.map((scenario, index) => (
@@ -290,7 +290,7 @@ const Sandbox = () => {
       {/* Info Section */}
       <div className="sandbox-info">
         <div className="info-card">
-          <h3>How Sandbox Training Works</h3>
+          <h3>{t('howSandboxWorks')}</h3>
           <div className="info-steps">
             <div className="info-step">
               <div className="step-number">1</div>

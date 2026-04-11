@@ -73,23 +73,23 @@ const Home = () => {
       <section className="problem-section">
         <div className="section-header">
           <AlertTriangle className="section-icon warning" size={32} />
-          <h2>Why Digital Safety Matters</h2>
+          <h2>{t('whyDigitalSafetyMatters')}</h2>
         </div>
         <div className="problem-grid">
           <div className="problem-card">
             <TrendingUp size={40} className="problem-icon" />
-            <h3>Online Scams Increasing</h3>
-            <p>Cybercrime is on the rise, with millions falling victim to online scams every year.</p>
+            <h3>{t('onlineScamsIncreasing')}</h3>
+            <p>{t('onlineScamsDescription')}</p>
           </div>
           <div className="problem-card">
             <Lock size={40} className="problem-icon" />
-            <h3>People Lose Money & Identity</h3>
-            <p>Financial fraud and identity theft can have devastating consequences for victims.</p>
+            <h3>{t('peopleLoseMoneyIdentity')}</h3>
+            <p>{t('peopleLoseMoneyDescription')}</p>
           </div>
           <div className="problem-card">
             <Eye size={40} className="problem-icon" />
-            <h3>Lack of Awareness</h3>
-            <p>Many users, especially elderly and beginners, lack the knowledge to identify threats.</p>
+            <h3>{t('lackOfAwareness')}</h3>
+            <p>{t('lackOfAwarenessDescription')}</p>
           </div>
         </div>
       </section>
@@ -98,23 +98,23 @@ const Home = () => {
       <section className="solution-section">
         <div className="section-header">
           <Lightbulb className="section-icon" size={32} />
-          <h2>How GuardianSathi Helps</h2>
+          <h2>{t('howGuardianSathiHelps')}</h2>
         </div>
         <div className="solution-grid">
           <div className="solution-card">
             <div className="solution-number">1</div>
-            <h3>Interactive Learning</h3>
-            <p>Learn through hands-on experience in a safe, simulated environment.</p>
+            <h3>{t('interactiveLearning')}</h3>
+            <p>{t('interactiveLearningDescription')}</p>
           </div>
           <div className="solution-card">
             <div className="solution-number">2</div>
-            <h3>Safe Practice Environment</h3>
-            <p>Make mistakes and learn from them without any real-world consequences.</p>
+            <h3>{t('safePracticeEnvironment')}</h3>
+            <p>{t('safePracticeEnvironmentDescription')}</p>
           </div>
           <div className="solution-card">
             <div className="solution-number">3</div>
-            <h3>Real-World Scenarios</h3>
-            <p>Practice with realistic scam scenarios you're likely to encounter.</p>
+            <h3>{t('realWorldScenarios')}</h3>
+            <p>{t('realWorldScenariosDescription')}</p>
           </div>
         </div>
       </section>
@@ -123,23 +123,23 @@ const Home = () => {
       <section className="awareness-section">
         <div className="section-header">
           <Shield className="section-icon primary" size={32} />
-          <h2>Did You Know?</h2>
+          <h2>{t('didYouKnow')}</h2>
         </div>
         <div className="awareness-grid">
           <div className="awareness-card">
             <div className="awareness-badge">⚠️</div>
-            <h3>OTP Should Never Be Shared</h3>
-            <p>Your One-Time Password is the key to your accounts. Never share it with anyone, even if they claim to be from your bank.</p>
+            <h3>{t('otpNeverShared')}</h3>
+            <p>{t('otpNeverSharedDescription')}</p>
           </div>
           <div className="awareness-card">
             <div className="awareness-badge">⏰</div>
-            <h3>Scammers Create Urgency</h3>
-            <p>"Act now or lose everything" is a common tactic. Take your time to verify before taking action.</p>
+            <h3>{t('scammersCreateUrgency')}</h3>
+            <p>{t('scammersCreateUrgencyDescription')}</p>
           </div>
           <div className="awareness-card">
             <div className="awareness-badge">🎭</div>
-            <h3>Fake Websites Look Real</h3>
-            <p>Scammers create convincing copies of real websites. Always check the URL carefully.</p>
+            <h3>{t('fakeWebsitesLookReal')}</h3>
+            <p>{t('fakeWebsitesLookRealDescription')}</p>
           </div>
         </div>
       </section>
@@ -148,23 +148,23 @@ const Home = () => {
       <section className="target-section">
         <div className="section-header">
           <Users className="section-icon" size={32} />
-          <h2>Who Can Benefit?</h2>
+          <h2>{t('whoCanBenefit')}</h2>
         </div>
         <div className="target-grid">
           <div className="target-card">
             <div className="target-icon elderly">👴</div>
-            <h3>Elderly Users</h3>
-            <p>Special focus on accessibility with larger text, simple navigation, and patient learning pace.</p>
+            <h3>{t('elderlyUsers')}</h3>
+            <p>{t('elderlyUsersDescription')}</p>
           </div>
           <div className="target-card">
             <div className="target-icon beginner">🌱</div>
-            <h3>Beginners</h3>
-            <p>New to digital services? Start from the basics and build confidence step by step.</p>
+            <h3>{t('beginners')}</h3>
+            <p>{t('beginnersDescription')}</p>
           </div>
           <div className="target-card">
             <div className="target-icon student">🎓</div>
-            <h3>Students</h3>
-            <p>Learn essential digital safety skills to protect yourself as you explore the online world.</p>
+            <h3>{t('students')}</h3>
+            <p>{t('studentsDescription')}</p>
           </div>
         </div>
       </section>
@@ -173,20 +173,18 @@ const Home = () => {
       <section className="mission-section">
         <div className="mission-content">
           <Globe size={48} className="mission-icon" />
-          <h2>Our Mission</h2>
+          <h2>{t('ourMission')}</h2>
           <p className="mission-quote">
-            "To make every user digitally safe and confident"
+            "{t('missionQuote')}"
           </p>
           <p className="mission-text">
-            We believe everyone deserves to use digital services without fear. 
-            GuardianSathi is committed to empowering users with the knowledge and 
-            skills to navigate the digital world safely.
+            {t('missionText')}
           </p>
           {!isAuthenticated && (
             <div className="mission-cta">
-              <p>Ready to start your safety journey?</p>
+              <p>{t('readyToStartJourney')}</p>
               <Link to="/signup" className="btn btn-accent">
-                Get Started Today
+                {t('getStartedToday')}
               </Link>
             </div>
           )}

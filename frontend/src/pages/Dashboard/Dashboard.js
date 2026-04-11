@@ -26,24 +26,24 @@ const Dashboard = () => {
   const modules = [
     { 
       id: 'aadhaar', 
-      name: 'Aadhaar Safety', 
+      name: t('aadhaarSafety'), 
       icon: Shield,
       color: '#4caf50',
-      description: 'Protect your Aadhaar information'
+      description: t('protectAadhaarInfo')
     },
     { 
       id: 'upi', 
-      name: 'UPI Safety', 
+      name: t('upiSafetyDashboard'), 
       icon: Lock,
       color: '#2196f3',
-      description: 'Secure your digital payments'
+      description: t('secureDigitalPayments')
     },
     { 
       id: 'jobScam', 
-      name: 'Job Scam Awareness', 
+      name: t('jobScamAwareness'), 
       icon: AlertTriangle,
       color: '#ff9800',
-      description: 'Identify fake job offers',
+      description: t('identifyFakeJobOffers'),
       locked: true
     }
   ];
@@ -98,14 +98,14 @@ const Dashboard = () => {
           <CheckCircle size={24} className="stat-icon" />
           <div className="stat-info">
             <span className="stat-value">{progress.totalModulesCompleted}</span>
-            <span className="stat-label">Modules Completed</span>
+            <span className="stat-label">{t('modulesCompleted')}</span>
           </div>
         </div>
         <div className="stat-card">
           <AlertTriangle size={24} className="stat-icon" />
           <div className="stat-info">
             <span className="stat-value">{progress.redFlagsIdentified}</span>
-            <span className="stat-label">Red Flags Found</span>
+            <span className="stat-label">{t('redFlagsFound')}</span>
           </div>
         </div>
         <div className="stat-card">
@@ -114,7 +114,7 @@ const Dashboard = () => {
             <span className="stat-value">
               {Object.values(progress.badges).filter(b => b.unlocked).length}
             </span>
-            <span className="stat-label">Badges Earned</span>
+            <span className="stat-label">{t('badgesEarned')}</span>
           </div>
         </div>
       </div>
@@ -123,7 +123,7 @@ const Dashboard = () => {
       <div className="progress-section">
         <h2 className="section-title">
           <TrendingUp size={24} />
-          Learning Progress
+          {t('learningProgress')}
         </h2>
         
         <div className="progress-grid">
@@ -163,14 +163,14 @@ const Dashboard = () => {
 
                 {moduleProgress.score > 0 && (
                   <div className="module-score">
-                    <span>Best Score: {moduleProgress.score}/100</span>
+                    <span>{t('bestScore', { score: moduleProgress.score })}</span>
                   </div>
                 )}
 
                 {moduleProgress.locked && (
                   <div className="locked-overlay">
                     <Lock size={32} />
-                    <span>Complete previous modules to unlock</span>
+                    <span>{t('completePreviousModules')}</span>
                   </div>
                 )}
 
@@ -189,16 +189,16 @@ const Dashboard = () => {
       <div className="quick-actions">
         <h2 className="section-title">
           <Clock size={24} />
-          Quick Actions
+          {t('quickActions')}
         </h2>
         <div className="action-buttons">
           <button className="action-btn primary" onClick={() => navigate('/sandbox')}>
             <Shield size={20} />
-            Continue Training
+            {t('continueTraining')}
           </button>
           <button className="action-btn secondary" onClick={() => navigate('/badges')}>
             <Award size={20} />
-            View Badges
+            {t('viewBadges')}
           </button>
         </div>
       </div>

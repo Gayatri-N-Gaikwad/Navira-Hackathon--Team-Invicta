@@ -12,6 +12,7 @@ const BankingTraining = () => {
   // UPI App State
   const [upiStep, setUpiStep] = useState('phone'); // phone, otp, pin, success
   const [phoneNumber, setPhoneNumber] = useState('');
+  const [hasStarted, setHasStarted] = useState(false);
   const [otp, setOtp] = useState('');
   const [upiPin, setUpiPin] = useState('');
   const [confirmPin, setConfirmPin] = useState('');
@@ -292,33 +293,62 @@ const BankingTraining = () => {
         </div>
       </div>
 
-      {/* Banking Safety Tips - Important! */}
-      <div className="training-tips">
-        <h3>⚠️ Banking Safety - Read Before You Start</h3>
-        <div className="tips-grid">
-          <div className="tip-card important">
-            <span className="tip-icon">🔐</span>
-            <p><strong>Never share</strong> your UPI PIN, OTP, or passwords</p>
-          </div>
-          <div className="tip-card important">
-            <span className="tip-icon">📱</span>
-            <p><strong>Verify caller identity</strong> - Banks never ask for PINs</p>
-          </div>
-          <div className="tip-card important">
-            <span className="tip-icon">🔗</span>
-            <p><strong>Check payment requests</strong> carefully before approving</p>
-          </div>
-          <div className="tip-card important">
-            <span className="tip-icon">🚨</span>
-            <p><strong>Urgency = Red flag</strong> - Scammers create fake urgency</p>
-          </div>
+     {!hasStarted && (
+  <div className="intro-screen">
+    
+    {/* Banking Safety */}
+    <div className="training-tips">
+      <h3>⚠️ Banking Safety - Read Before You Start</h3>
+      <div className="tips-grid">
+        <div className="tip-card important">
+          <span className="tip-icon">🔐</span>
+          <p><strong>Never share</strong> your UPI PIN, OTP, or passwords</p>
+        </div>
+        <div className="tip-card important">
+          <span className="tip-icon">📱</span>
+          <p><strong>Verify caller identity</strong> - Banks never ask for PINs</p>
+        </div>
+        <div className="tip-card important">
+          <span className="tip-icon">🔗</span>
+          <p><strong>Check payment requests</strong> carefully before approving</p>
+        </div>
+        <div className="tip-card important">
+          <span className="tip-icon">🚨</span>
+          <p><strong>Urgency = Red flag</strong> - Scammers create fake urgency</p>
         </div>
       </div>
+    </div>
 
-      {/* Main Training Area */}
-      <div className="training-container">
+    {/* Training Tips */}
+    <div className="training-tips">
+      <h3>
+        <Shield size={20} />
+        Training Tips
+      </h3>
+      <ul>
+        <li>Never share your OTP with anyone</li>
+        <li>Banks never ask for passwords or PINs</li>
+        <li>Verify sender identity</li>
+        <li>Contact bank using official numbers</li>
+      </ul>
+    </div>
+
+    {/* Start Button */}
+    <div className="start-btn-container">
+      <button 
+        className="start-simulation-btn"
+        onClick={() => setHasStarted(true)}
+      >
+        🚀 Start Simulation
+      </button>
+    </div>
+  </div>
+)}
+
+      {hasStarted && (
+          <div className="training-container">
         {/* Left Side - UPI App Simulator */}
-        <div className="simulator-section">
+        <div style={{ marginLeft: '50px', alignItems: 'center' }} className="simulator-section">
           <div className="simulator-header">
             <Smartphone size={20} />
             <span>UPI App Simulation</span>
@@ -369,6 +399,8 @@ const BankingTraining = () => {
           <div className="simulator-label">Scammer Messages</div>
         </div>
       </div>
+      
+      )}
 
       {/* Warning Banner */}
       {showWarning && (
@@ -394,19 +426,6 @@ const BankingTraining = () => {
         </div>
       )}
 
-      {/* Training Tips */}
-      <div className="training-tips">
-        <h3>
-          <Shield size={20} />
-          Training Tips
-        </h3>
-        <ul>
-          <li>Never share your OTP with anyone, even bank officials</li>
-          <li>Banks never ask for passwords or PINs via SMS or calls</li>
-          <li>Always verify the sender's identity before responding</li>
-          <li>If in doubt, contact your bank directly using official numbers</li>
-        </ul>
-      </div>
     </div>
   );
 };

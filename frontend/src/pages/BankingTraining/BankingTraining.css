@@ -1,9 +1,42 @@
-/* Banking Training Page Styles */
+Banking Training Page Styles
 
 .banking-training-page {
   padding: 1rem;
   min-height: 100vh;
   background: var(--background);
+}
+
+/* Intro Screen */
+.intro-screen {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  animation: fadeIn 0.4s ease;
+}
+
+/* Start Button */
+.start-btn-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.start-simulation-btn {
+  background: linear-gradient(135deg, #4caf50, #2e7d32);
+  color: white;
+  padding: 1rem 2.5rem;
+  font-size: 1.2rem;
+  font-weight: 700;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 10px 25px rgba(76, 175, 80, 0.3);
+}
+
+.start-simulation-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 30px rgba(76, 175, 80, 0.4);
 }
 
 /* Header */
@@ -54,10 +87,11 @@
 
 /* Training Container */
 .training-container {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2rem;
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
   margin-bottom: 1.5rem;
+  align-items: flex-start; 
 }
 
 /* Simulator Section */
@@ -86,7 +120,7 @@
 
 /* Phone Frame */
 .phone-frame {
-  width: 320px;
+  width: 380px;
   height: 640px;
   background: #1a1a1a;
   border-radius: 40px;
