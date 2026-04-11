@@ -162,39 +162,7 @@ const Sandbox = () => {
 
       {/* AI Training Section */}
       <div className="ai-training-section">
-        <div className="ai-training-card">
-          <div className="ai-card-header">
-            <div className="ai-card-icon">
-              <Sparkles size={50} />
-            </div>
-            <div className="ai-card-content">
-              <h2>AI-Powered Scam Detection Training</h2>
-              <p>
-                Learn through interactive simulations with real-time AI
-                feedback. Practice identifying scams, handling conversations,
-                and analyzing messages.
-              </p>
-            </div>
-          </div>
-
-          <div className="ai-features">
-            <div className="ai-feature">
-              <div className="feature-icon">📱</div>
-              <h4>Message Classification</h4>
-              <p>Identify scam vs legitimate messages</p>
-            </div>
-            <div className="ai-feature">
-              <div className="feature-icon">💬</div>
-              <h4>Chat Simulator</h4>
-              <p>Practice with AI scammer conversations</p>
-            </div>
-            <div className="ai-feature">
-              <div className="feature-icon">🔍</div>
-              <h4>Message Analysis</h4>
-              <p>Analyze suspicious messages instantly</p>
-            </div>
-          </div>
-
+        <div className="ai-training-wrapper">
           <button className="ai-training-btn" onClick={handleAITraining}>
             <Sparkles size={20} />
             Learn with AI
