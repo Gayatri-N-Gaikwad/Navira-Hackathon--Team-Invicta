@@ -38,6 +38,7 @@ const translations = {
     deepfakeTraining: 'Deepfake Scam Simulator',
     governmentSchemeTraining: 'Government Scheme Application',
     digilockerTraining: 'DigiLocker Security Training',
+    mobileRechargeTraining: 'Mobile Recharge Safety',
     startTraining: 'Start Training',
     safeEnvironment: 'Safe Environment',
     
@@ -238,11 +239,13 @@ const translations = {
     // Sandbox
     bankingTraining: 'बैंकिंग प्रशिक्षण',
     governmentTraining: 'सरकारी प्रशिक्षण',
+     mobileRechargeTraining: 'मोबाइल रिचार्ज सुरक्षा प्रशिक्षण',
     deepfakeTraining: 'डीपफेक घोटाला सिम्युलेटर',
     governmentSchemeTraining: 'सरकारी योजना आवेदन',
-    digilockerTraining: 'डिजीलॉकर सुरक्षा प्रशिक्षण',
     startTraining: 'प्रशिक्षण शुरू करें',
     safeEnvironment: 'सुरक्षित वातावरण',
+   
+   
     
     // Progress
     continueJourney: 'अपनी डिजिटल सुरक्षा यात्रा जारी रखें',
@@ -417,7 +420,6 @@ const translations = {
     governmentTraining: 'सरकारी प्रशिक्षण',
     deepfakeTraining: 'डीपफेक फसवणूक सिम्युलेटर',
     governmentSchemeTraining: 'सरकारी योजना अर्ज प्रशिक्षण',
-    digilockerTraining: 'डिजीलॉकर सुरक्षा प्रशिक्षण',
     startTraining: 'प्रशिक्षण सुरू करा',
     safeEnvironment: 'सुरक्षित वातावरण',
     

@@ -62,42 +62,28 @@ const Sandbox = () => {
       color: "banking",
       buttonText: t("startTraining"),
     },
-    {
-      id: "government",
-      icon: Contact,
-      title: t("governmentTraining"),
-      description:
-        "Learn about Aadhaar scams, ABHA frauds, fake government websites, KYC scams, and how to verify official communications.",
-      scenarios: [
-        "Fake Aadhaar update messages",
-        "ABHA health ID scams",
-        "Fake government websites",
-        "KYC update frauds",
-      ],
-      color: "government",
-      buttonText: t("startTraining"),
-    },
-    {
-      id: "deepfake",
-      icon: Brain,
-      title: t("deepfakeTraining") || "Deepfake Scam Simulator",
-      description:
-        "Learn to identify AI-generated video scams including fake relative calls, deepfake impersonation, and urgency-based frauds targeting elderly victims.",
-      scenarios: [
-        "Fake video calls from relatives",
-        "AI-generated voice scams",
-        "Deepfake impersonation attacks",
-        "Urgency-based fraud tactics",
-      ],
-      color: "deepfake",
-      buttonText: t("startTraining"),
-    },
-    {
+    // {
+    //   id: "government",
+    //   icon: Contact,
+    //   title: t("governmentTraining"),
+    //   description:
+    //     "Learn about Aadhaar scams, ABHA frauds, fake government websites, KYC scams, and how to verify official communications.",
+    //   scenarios: [
+    //     "Fake Aadhaar update messages",
+    //     "ABHA health ID scams",
+    //     "Fake government websites",
+    //     "KYC update frauds",
+    //   ],
+    //   color: "government",
+    //   buttonText: t("startTraining"),
+    // },
+
+   {
       id: "governmentScheme",
       icon: FileText,
       title: t("governmentSchemeTraining") || "Government Scheme Application",
       description:
-        "Learn to safely apply for government assistance schemes. Practice identifying official websites, filling forms securely, uploading masked documents, and avoiding fake payment scams.",
+        t("Learn to safely apply for government assistance schemes. Practice identifying official websites, filling forms securely, uploading masked documents, and avoiding fake payment scams."),
       scenarios: [
         "Identify official .gov.in websites",
         "Fill forms without sharing sensitive data",
@@ -107,22 +93,7 @@ const Sandbox = () => {
       color: "governmentScheme",
       buttonText: t("startTraining"),
     },
-    {
-      id: "digilocker",
-      icon: Lock,
-      title: t("digilockerTraining") || "DigiLocker Security Training",
-      description:
-        "Learn to safely use DigiLocker for storing and sharing documents. Practice identifying official portals, handling OTPs securely, detecting WhatsApp OTP scams, and avoiding phishing emails.",
-      scenarios: [
-        "Identify official DigiLocker.gov.in website",
-        "Enter mobile and handle OTP securely",
-        "Detect WhatsApp OTP scam attempts",
-        "Download and share documents safely",
-        "Recognize and report phishing emails",
-      ],
-      color: "digilocker",
-      buttonText: t("startTraining"),
-    },
+
     {
       id: "mobileRecharge",
       icon: Smartphone,
@@ -139,6 +110,40 @@ const Sandbox = () => {
       color: "mobileRecharge",
       buttonText: t("startTraining"),
     },
+
+    {
+      id: "deepfake",
+      icon: Brain,
+      title: t("deepfakeTraining") || "Deepfake Scam Simulator",
+      description:
+        "Learn to identify AI-generated video scams including fake relative calls, deepfake impersonation, and urgency-based frauds targeting elderly victims.",
+      scenarios: [
+        "Fake video calls from relatives",
+        "AI-generated voice scams",
+        "Deepfake impersonation attacks",
+        "Urgency-based fraud tactics",
+      ],
+      color: "deepfake",
+      buttonText: t("startTraining"),
+    },
+ 
+    {
+      id: "digilocker",
+      icon: Lock,
+      title: t("digilockerTraining") || "DigiLocker Security Training",
+      description:
+        "Learn to safely use DigiLocker for storing and sharing documents. Practice identifying official portals, handling OTPs securely, detecting WhatsApp OTP scams, and avoiding phishing emails.",
+      scenarios: [
+        "Identify official DigiLocker.gov.in website",
+        "Enter mobile and handle OTP securely",
+        "Detect WhatsApp OTP scam attempts",
+        "Download and share documents safely",
+        "Recognize and report phishing emails",
+      ],
+      color: "digilocker",
+      buttonText: t("startTraining"),
+    },
+
   ];
 
   return (

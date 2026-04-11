@@ -59,7 +59,7 @@ return(
   {/* Page Header */}
   <div className="page-header">
     <div className="header-icon">
-      �
+      📝
     </div>
     <div className="header-content">
       <h1>Scam Quiz</h1>
@@ -130,9 +130,8 @@ return(
         <div className="action-buttons">
           <div className="tooltip-wrapper">
             <button 
-              onClick={load} 
               className="action-button"
-              disabled={loading}
+              onClick={() => load()}
             >
               <span>Next Question</span>
               <span className="tooltip">Try another quiz question</span>
@@ -152,7 +151,6 @@ return(
         </div>
       </div>
     )}
-
   </div>
 
 </div>

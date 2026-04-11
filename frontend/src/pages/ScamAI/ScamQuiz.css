@@ -44,16 +44,6 @@
   margin: 0 auto;
 }
 
-/* Message Display */
-.message-display {
-  background: white;
-  border-radius: 16px;
-  padding: 2rem;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  margin-bottom: 2rem;
-  border-left: 4px solid var(--primary);
-}
-
 .sms-simulator {
   background: #f8f9fa;
   border-radius: 12px;
@@ -102,6 +92,7 @@
   margin-bottom: 2rem;
 }
 
+
 .option-button {
   background: white;
   border: 2px solid #e9ecef;
@@ -116,6 +107,7 @@
   display: flex;
   align-items: center;
   min-height: 60px;
+  justify-content: flex-start;
 }
 
 .option-button::before {
@@ -236,6 +228,7 @@
   background: #f8f9fa;
   border-radius: 8px;
   border-left: 3px solid var(--primary);
+  text-align: right;
 }
 
 .indicators-list {
